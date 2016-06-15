@@ -1,11 +1,6 @@
 var gulp = require('gulp');
-var browserify = require('browserify');
+var ts = require('gulp-typescript');
 var sass = require('gulp-sass');
-var source = require('vinyl-source-stream');
-var tsify = require('tsify');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var buffer = require('vinyl-buffer');
 var paths = {
     pages: ['src/*.html']
 };
@@ -18,7 +13,7 @@ gulp.task('html', function () {
 
 //build sass files to css and place in dist folder
 gulp.task('sass', function () {
-  return gulp.src('./styles/**/*.scss')
+  return gulp.src('src/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(source('styles.css'))
     .pipe(gulp.dest('dist/css'));
@@ -26,24 +21,14 @@ gulp.task('sass', function () {
 
 //watch any changes done in sass files
 gulp.task('sass:watch', function () {
-  gulp.watch('./styles/**/*.scss', ['sass']);
+  gulp.watch('src/styles/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['html','sass','sass:watch'], function () {
-    return browserify({
-        basedir: '.',
-        debug: true,
-        entries: ['src/main.ts'],
-        cache: {},
-        packageCache: {}
-    })
-    .plugin(tsify)
-    .transform("babelify")
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-	.pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist/scripts'));
+gulp.task('default',['html','sass','sass:watch'], function () {
+    return gulp.src('src/**/*.ts')
+        .pipe(ts({
+            noImplicitAny: true,
+            out: 'output.js'
+        }))
+        .pipe(gulp.dest('dist/scripts'));
 });
