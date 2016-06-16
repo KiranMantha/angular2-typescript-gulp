@@ -10,10 +10,6 @@ Setup
 
 3. run 'npm install' to install the dependancies mentioned in package.json
 
-4. run 'npm install -g typescript gulp-cli' to install typescript and gulp-cli globally
+4. if you change the build folder name then update gulpfile.js at line:53
 
-5. run 'npm install --save-dev gulp gulp-typescript' to install gulp plugin for typescript
-
-6. run 'npm install --save-dev browserify tsify vinyl-source-stream' to install browserify,tsify and vinyl-source-stream
-
-7.
+5. run 'gulp' to start application at localhost:8080. you can change the port number in gulpfile.js at line:55

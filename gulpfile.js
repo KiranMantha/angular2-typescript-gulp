@@ -50,20 +50,6 @@ gulp.task('ts2js', function () {
 });
 
 gulp.task('webserver', function () {
-    // var http = require('http');
-    // var connect = require('connect');
-    // var serveStatic = require('serve-static');
-    // var open = require('open');
-
-    // var port = 9000, app;
-
-    // //gulp.watch(PATHS.src, ['ts2js']);
-
-    // app = connect().use(serveStatic(__dirname));
-    // http.createServer(app).listen(port, function () {
-    //     open('http://localhost:' + port);
-    // });
-
     gulp.src('dist')
         .pipe(webserver({
             port: 8080,
