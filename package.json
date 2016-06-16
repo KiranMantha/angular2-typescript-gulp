@@ -1,15 +1,24 @@
 {
-  "name": "ng2-play.ts",
-  "version": "1.0.0-SNAPSHOT",
-  "description": "A minimal Angular2 playground using TypeScript",
+  "name": "angular2-typescript-gulp",
+  "version": "1.0.0",
+  "description": "A sample angularjs2 application using typescript and gulp",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pkozlowski-opensource/ng2-play.ts.git"
+    "url": "git+https://github.com/KiranMantha/angular2-typescript-gulp.git"
   },
   "bugs": {
-    "url": "https://github.com/pkozlowski-opensource/ng2-play.ts/issues"
+    "url": "https://github.com/KiranMantha/angular2-typescript-gulp/issues"
   },
-  "homepage": "https://github.com/pkozlowski-opensource/ng2-play.ts#readme",
+  "homepage": "https://github.com/KiranMantha/angular2-typescript-gulp#readme",
+  "author": "Kiran Mantha",
+  "license": "MIT",
+  "keywords": [
+    "angularjs2",
+    "typescript",
+    "gulp",
+    "tsc",
+    "gulp-typescript"
+  ],
   "devDependencies": {
     "del": "^1.2.0",
     "typescript": "^1.7.0",
