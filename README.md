@@ -10,8 +10,8 @@ Setup
 
 3. run 'npm install' to install the dependancies mentioned in package.json
 
-4. if you change the build folder name then update gulpfile.js at line:53
+4. if you change the build folder name then update gulpfile.js at line:78
 
-5. run 'gulp' to start application at localhost:8080. you can change the port number in gulpfile.js at line:55
+5. run 'gulp' to start application at localhost:8080. you can change the port number in gulpfile.js at line:81
 
 6. this repository is created on the basis of https://github.com/pkozlowski-opensource/ng2-play. if found any difficulty in this repo check ng2-play repo for basic structure.
