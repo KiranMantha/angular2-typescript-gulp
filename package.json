@@ -11,6 +11,7 @@
   },
   "homepage": "https://github.com/KiranMantha/angular2-typescript-gulp#readme",
   "author": "Kiran Mantha",
+  "license": "MIT",
   "keywords": [
     "angularjs2",
     "typescript",
