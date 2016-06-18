@@ -1,0 +1,13 @@
+<div>
+    <form (submit)="saveTodo()">
+        <input type="text" [(ngModel)]="todoModel.title" />
+        <ul>
+            <li *ngIf="todoService.todos.length == 0">
+                No Todos yet!
+            </li>
+            <li *ngFor="#todo of todoService.todos">
+                {{todo.title}}
+            </li>
+        </ul>
+    </form>
+</div>
