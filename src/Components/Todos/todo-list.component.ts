@@ -6,7 +6,7 @@ import {TodoModal} from "../../Modals/todo-modal";
   selector: 'todo-list',
   templateUrl: 'Components/Todos/todo-list.tpl.html'
 })
-export class TodoList {
+export class TodoListComponent {
   constructor( @Inject(TodoService) public todoService) {
 
   }
