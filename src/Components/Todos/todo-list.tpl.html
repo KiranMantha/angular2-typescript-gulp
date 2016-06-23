@@ -1,13 +1,15 @@
 <div>
     <form (submit)="saveTodo()">
-        <input type="text" [(ngModel)]="todoModel.title" />
-        <ul>
-            <li *ngIf="todoService.todos.length == 0">
+        <h4>Add todo here</h4>
+        <input class="form-control" type="text" [(ngModel)]="todoModel.title" />
+        <h4>Todo List</h4>
+        <div class="list-group">
+            <a href="#" *ngIf="todoService.todos.length == 0" class="list-group-item">
                 No Todos yet!
-            </li>
-            <li *ngFor="let todo of todoService.todos">
-                <a [routerLink]="['todo/details', todo.id]">{{todo.title}}</a>
-            </li>
-        </ul>
+            </a>
+            <a *ngFor="let todo of todoService.todos" class="list-group-item" [routerLink]="['todo/details', todo.id]">
+                {{todo.title}}
+            </a>
+        </div>
     </form>
 </div>

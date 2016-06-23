@@ -1,8 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Angular2 playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular2 playground</title>    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <base href="/">
 </head>
@@ -12,6 +16,8 @@
 </body>
 
 <!-- ES6-related imports -->
+<script src="scripts/lib/jquery.min.js"></script>
+<script src="scripts/lib/bootstrap.min.js"></script>
 <script src="scripts/lib/shim.min.js"></script>
 <script src="scripts/lib/zone.js"></script>
 <script src="scripts/lib/Reflect.js"></script>
@@ -19,7 +25,7 @@
 <script src="scripts/systemjs.config.js"></script>
 <script>
     //bootstrap the Angular2 application
-    System.import('scripts/main.js').catch(console.log.bind(console));
+    System.import('scripts/main').catch(console.log.bind(console));
 </script>
 
 </html>

@@ -7,9 +7,9 @@ var gulp = require('gulp'),
     };
 
 //clean the dist folder
-gulp.task('clean', function () {
-    return del(['dist']);
-});
+// gulp.task('clean', function () {
+//     return del(['dist']);
+// });
 
 //<-------------build tasks------------->//
 gulp.task('scripts.systemjsConfig', function () {
@@ -79,7 +79,9 @@ gulp.task('scripts.lib', ['scripts.systemjsConfig', 'scripts.angular', 'scripts.
         'node_modules/core-js/client/shim.min.js',
         'node_modules/zone.js/dist/zone.js',
         'node_modules/reflect-metadata/Reflect.js',
-        'node_modules/systemjs/dist/system.src.js'
+        'node_modules/systemjs/dist/system.src.js',
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
     ]).pipe(gulp.dest('dist/scripts/lib'));
 });
 
@@ -89,11 +91,26 @@ gulp.task('scripts.html', function () {
         .pipe(gulp.dest('dist'));
 });
 
+//copy bootstrap css files into styles folder
+gulp.task('scripts.bootstrap', function () {
+    return gulp.src([
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+    ]).pipe(gulp.dest('dist/css'));
+});
+
 //build css files from scss
-gulp.task('scripts.css', function () {
+gulp.task('scripts.css', ['scripts.bootstrap'],function () {
     return gulp.src('src/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/css'));
+});
+
+//build font files from bootstrap fonts
+gulp.task('scripts.fonts', function () {
+    return gulp.src('node_modules/bootstrap/dist/fonts/*')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('dist/fonts'));
 });
 
 //compile typescript files to javascript files
