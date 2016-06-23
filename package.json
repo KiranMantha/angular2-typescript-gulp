@@ -25,14 +25,30 @@
     "gulp": "^3.9.0",
     "gulp-sass": "^2.3.2",
     "gulp-typescript": "^2.8.0",
-    "gulp-webserver": "^0.8.0"
+    "gulp-webserver": "^0.8.0",
+    "typings":"^1.0.4"
   },
   "dependencies": {
-    "angular2": "2.0.0-beta.16",
-    "es6-shim": "0.35.0",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.12",
-    "systemjs": "0.19.6"
+    "@angular/common": "2.0.0-rc.3",
+    "@angular/compiler": "2.0.0-rc.3",
+    "@angular/core": "2.0.0-rc.3",
+    "@angular/forms": "0.1.1",
+    "@angular/http": "2.0.0-rc.3",
+    "@angular/platform-browser": "2.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.3",
+    "@angular/router": "3.0.0-alpha.7",
+    "@angular/router-deprecated": "2.0.0-rc.2",
+    "@angular/upgrade": "2.0.0-rc.3",
+    "angular2-in-memory-web-api": "0.0.12",
+    "bootstrap": "^3.3.6",
+    "core-js": "^2.4.0",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12",
+    "systemjs": "^0.19.6"
+  },
+  "ambientDependencies": {
+    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd",
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#7de6c3dd94feaeb21f20054b9f30d5dabc5efabd"
   }
 }

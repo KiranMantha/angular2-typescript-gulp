@@ -7,19 +7,80 @@ var gulp = require('gulp'),
     };
 
 //clean the dist folder
-// gulp.task('clean', function () {
-//     return del(['dist/**/*']);
-// });
+gulp.task('clean', function () {
+    return del(['dist']);
+});
 
 //<-------------build tasks------------->//
+gulp.task('scripts.systemjsConfig', function () {
+    return gulp.src('systemjs.config.js')
+        .pipe(gulp.dest('dist/scripts'));
+});
+
+gulp.task('scripts.angular.common', function () {
+    return gulp.src('node_modules/@angular/common/bundles/common.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/common'));
+});
+
+gulp.task('scripts.angular.compiler', function () {
+    return gulp.src('node_modules/@angular/compiler/bundles/compiler.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/compiler'));
+});
+
+gulp.task('scripts.angular.core', function () {
+    return gulp.src('node_modules/@angular/core/bundles/core.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/core'));
+});
+
+gulp.task('scripts.angular.http', function () {
+    return gulp.src('node_modules/@angular/http/bundles/http.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/http'));
+});
+
+gulp.task('scripts.angular.platform-browser', function () {
+    return gulp.src('node_modules/@angular/platform-browser/bundles/platform-browser.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/platform-browser'));
+});
+
+gulp.task('scripts.angular.platform-browser-dynamic', function () {
+    return gulp.src('node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/platform-browser-dynamic'));
+});
+
+gulp.task('scripts.angular.router', function () {
+    return gulp.src('node_modules/@angular/router/**/*.js')
+        .pipe(gulp.dest('dist/scripts/angular/router'));
+});
+
+gulp.task('scripts.angular.router-deprecated', function () {
+    return gulp.src('node_modules/@angular/router-deprecated/bundles/router-deprecated.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/router-deprecated'));
+});
+
+gulp.task('scripts.angular.upgrade', function () {
+    return gulp.src('node_modules/@angular/upgrade/bundles/upgrade.umd.min.js')
+        .pipe(gulp.dest('dist/scripts/angular/upgrade'));
+});
+
+gulp.task('scripts.angular', ['scripts.angular.common', 'scripts.angular.compiler', 'scripts.angular.core', 'scripts.angular.http', 'scripts.angular.platform-browser', 'scripts.angular.platform-browser-dynamic', 'scripts.angular.router', 'scripts.angular.router-deprecated', 'scripts.angular.upgrade'], function () {
+    return gulp.src(
+        'node_modules/angular2-in-memory-web-api/index.js'
+    ).pipe(gulp.dest('dist/scripts/angular/angular2-in-memory-web-api'));
+});
+
+gulp.task('scripts.angular.rxjs', function () {
+    return gulp.src('node_modules/rxjs/**/*.js')
+        .pipe(gulp.dest('dist/scripts/angular/rxjs'));
+});
+
 //copy the required scripts into dist folder
-gulp.task('scripts.lib', function () {
-    return gulp.src(['node_modules/angular2/bundles/angular2-polyfills.js',
-        'node_modules/es6-shim/es6-shim.min.js',
-        'node_modules/systemjs/dist/system.js',
-        'node_modules/rxjs/bundles/Rx.js',
-        'node_modules/angular2/bundles/angular2.js'])
-        .pipe(gulp.dest('dist/scripts/lib'));
+gulp.task('scripts.lib', ['scripts.systemjsConfig', 'scripts.angular', 'scripts.angular.rxjs'], function () {
+    return gulp.src([
+        'node_modules/core-js/client/shim.min.js',
+        'node_modules/zone.js/dist/zone.js',
+        'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/systemjs/dist/system.src.js'
+    ]).pipe(gulp.dest('dist/scripts/lib'));
 });
 
 //copy html files into dist folder
@@ -41,7 +102,7 @@ gulp.task('scripts.ts', function () {
     var tscConfig = require('./tsconfig.json');
 
     var tsResult = gulp
-        .src([PATHS.src, 'node_modules/angular2/typings/browser.d.ts'])
+        .src([PATHS.src, 'node_modules/typings/browser.d.ts'])
         .pipe(typescript(tscConfig.compilerOptions));
 
     return tsResult.js.pipe(gulp.dest('dist/scripts'));
