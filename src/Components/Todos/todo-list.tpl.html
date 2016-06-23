@@ -5,8 +5,8 @@
             <li *ngIf="todoService.todos.length == 0">
                 No Todos yet!
             </li>
-            <li *ngFor="#todo of todoService.todos">
-                {{todo.title}}
+            <li *ngFor="let todo of todoService.todos">
+                <a [routerLink]="['todo/details', todo.id]">{{todo.title}}</a>
             </li>
         </ul>
     </form>
