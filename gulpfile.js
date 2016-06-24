@@ -4,12 +4,13 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     PATHS = {
         src: 'src/**/*.ts'
-    };
+    },
+    gulpSequence = require('gulp-sequence').use(gulp);
 
 //clean the dist folder
-// gulp.task('clean', function () {
-//     return del(['dist']);
-// });
+gulp.task('clean', function () {
+    return del('dist/**/*');
+});
 
 //<-------------build tasks------------->//
 gulp.task('scripts.systemjsConfig', function () {
@@ -126,7 +127,7 @@ gulp.task('scripts.ts', function () {
 });
 
 //unified task for scripts
-gulp.task('scripts', ['scripts.lib', 'scripts.html', 'scripts.css', 'scripts.ts']);
+gulp.task('scripts', gulpSequence('scripts.lib', 'scripts.html', 'scripts.css', 'scripts.ts'));
 //<-------------build tasks------------->//
 
 
@@ -147,7 +148,7 @@ gulp.task('watch.ts', function () {
 });
 
 //unified task for watch
-gulp.task('watch', ['watch.html', 'watch.css', 'watch.ts']);
+gulp.task('watch', gulpSequence('watch.html', 'watch.css', 'watch.ts'));
 //<-------------watch tasks------------->//
 
 
@@ -163,5 +164,5 @@ gulp.task('webserver', function () {
 //<-------------webserver task------------->//
 
 //<-------------default task------------->//
-gulp.task('default', ['scripts', 'watch', 'webserver']);
+gulp.task('default', gulpSequence('clean', 'scripts', 'watch', 'webserver'));
 //<-------------default task------------->//
