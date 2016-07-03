@@ -1,6 +1,8 @@
-<div class="modal-dialog">
-    <span class="modal-dialog-close" (click)="_closeDialog()"></span>
-    <div class="modal-dialog-content">
-        <h3>Test Modal</h3>
+<div class="modal-dialog" *ngIf="_showDialog" (click)="_closeDialog($event)">
+    <div class="modal-dialog-body">
+        <span class="modal-dialog-close" (click)="_closeDialog($event)"></span>
+        <div class="modal-dialog-content">
+            <h3>Test Modal</h3>
+        </div>
     </div>
 </div>

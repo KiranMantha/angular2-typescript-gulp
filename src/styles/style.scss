@@ -1,12 +1,29 @@
-.modal-dialog{
-    border:1px solid #000;
-    .modal-dialog-close{
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 18px;
-        &::before {
-            content: '×';
+.modal-dialog-open {
+    overflow: hidden;
+}
+.modal-dialog {
+    &:before {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        content: "";
+        background: rgba(0,0,0,.6);
+        transition: opacity .15s linear;
+    }
+    .modal-dialog-body {
+        background: #fff;
+        position: relative;
+        transition: transform .3s ease-out;
+        .modal-dialog-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            &::before {
+                content: '×';
+            }
         }
     }
 }

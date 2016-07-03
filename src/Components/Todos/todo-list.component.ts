@@ -6,11 +6,16 @@ import {TodoModal} from "../../Modals/todo-modal";
 
 @Component({
   selector: 'todo-list',
-  directives: [ROUTER_DIRECTIVES,ModalDialog],
+  directives: [ROUTER_DIRECTIVES, ModalDialog],
   templateUrl: 'Components/Todos/todo-list.tpl.html'
 })
+
 export class TodoListComponent {
-  constructor( @Inject(TodoService) public todoService, private componentResolver: ComponentResolver, private vc: ViewContainerRef) {
+  constructor(
+    @Inject(TodoService) public todoService,
+    private componentResolver: ComponentResolver,
+    private vc: ViewContainerRef
+  ) {
 
   }
   todoModel = new TodoModal();
@@ -22,8 +27,8 @@ export class TodoListComponent {
 
   open() {
     this.componentResolver.resolveComponent(ModalDialog).then(factory => {
-      let res = this.vc.createComponent(factory);
-      res.instance._openDialog();
+      let dialog = this.vc.createComponent(factory);
+      dialog.instance._openDialog();
     });
   }
 }
