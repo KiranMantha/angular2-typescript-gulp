@@ -1,0 +1,12 @@
+.modal-dialog{
+    border:1px solid #000;
+    .modal-dialog-close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        &::before {
+            content: '×';
+        }
+    }
+}
