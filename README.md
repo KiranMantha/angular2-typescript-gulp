@@ -21,4 +21,4 @@ Note:
 If found any errors in npm install, please run npm install once again it will clear all the errors. After running gulp, please make sure that all your scripts are migrated to your build folder accordingly if not please run gulp again to run localhost(it will show errors in .d.ts files but ignore them).
 
 Update:
-The latest project is completely migrated to angularjs 2.0.0-rc-3 build to take advantage of latest routing modules. it is not compatible with beta builds.
+The latest project is completely migrated to angularjs 2.0.0-rc-4 build to take advantage of latest routing modules. it is not compatible with beta builds.
