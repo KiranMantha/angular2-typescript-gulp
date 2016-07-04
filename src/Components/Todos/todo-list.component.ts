@@ -27,7 +27,9 @@ export class TodoListComponent {
 
   open() {
     this.componentResolver.resolveComponent(ModalDialog).then(factory => {
-      let dialog = this.vc.createComponent(factory);
+      let dialog = this.vc.createComponent(factory);      
+      dialog.instance.templateUrl = "Components/Todos/todo-details.tpl.html";
+      dialog.instance.closeByDocument = true;
       dialog.instance._openDialog();
     });
   }

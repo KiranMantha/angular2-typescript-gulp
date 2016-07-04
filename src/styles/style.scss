@@ -1,26 +1,35 @@
-.modal-dialog-open {
+.ng-dialog-open {
     overflow: hidden;
 }
-.modal-dialog {
-    &:before {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        content: "";
-        background: rgba(0,0,0,.6);
-        transition: opacity .15s linear;
-    }
-    .modal-dialog-body {
-        background: #fff;
+.ng-dialog {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+
+    .ng-dialog-body {
         position: relative;
-        transition: transform .3s ease-out;
-        .modal-dialog-close {
+        width: 600px;
+        margin: 30px auto;
+        background-color: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        outline: 0;    
+        .ng-dialog-close {
             position: absolute;
-            top: 10px;
+            top: 7px;
             right: 10px;
             font-size: 18px;
+            cursor: pointer;
+            font-weight: 600;
+            opacity: 0.3;
+            border: none;
+            background: transparent;
             &::before {
                 content: '×';
             }
