@@ -1,6 +1,7 @@
+##Introduction
 A sample angularjs2 application using typescript and gulp
 
-Setup
+###Setup
 
 1. Clone the repository to your local project folder
 
@@ -17,8 +18,8 @@ Setup
 6. this repository is created on the basis of https://github.com/pkozlowski-opensource/ng2-play. if found any difficulty in this repo check ng2-play repo for basic structure.
 
 
-Note: 
+#####Note: 
 If found any errors in npm install, please run npm install once again it will clear all the errors. After running gulp, please make sure that all your scripts are migrated to your build folder accordingly if not please run gulp again to run localhost(it will show errors in .d.ts files but ignore them).
 
-Update:
+#####Update:
 The latest project is completely migrated to angularjs 2.0.0-rc-4 build to take advantage of latest routing modules. it is not compatible with beta builds.
