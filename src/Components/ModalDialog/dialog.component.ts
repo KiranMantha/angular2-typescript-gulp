@@ -11,7 +11,7 @@ declare var jQuery: any;
 })
 
 export class ModalDialog {
-    private elementRef: ElementRef;
+    private _elementRef: ElementRef;
     private _showDialog: boolean;
     private _content: string;
 
@@ -19,13 +19,13 @@ export class ModalDialog {
     public template: string = '';
     public templateUrl: string = '';
 
-    constructor(private _elementRef: ElementRef, private http: Http) {
-        this.elementRef = _elementRef;
+    constructor(private elementRef: ElementRef, private _http: Http) {
+        this._elementRef = elementRef;
         this._showDialog = false;
     }
 
-    _openDialog() {
-        jQuery(this.elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+    public openDialog(): void {
+        jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this._showDialog = true;
         if (this.templateUrl !== '') {
             this._loadTemplate(this.templateUrl).subscribe(content => this._content = content);
@@ -33,7 +33,7 @@ export class ModalDialog {
             this._content = this.template;
         }
     }
-    _closeDialog(evt) {
+    public closeDialog(evt): void {
         if (this.closeByDocument) {
             if (evt.target.classList.contains('ng-dialog') || evt.target.classList.contains('ng-dialog-close')) {
                 this._close();
@@ -46,18 +46,18 @@ export class ModalDialog {
         }
     }
 
-    private _close() {
+    private _close(): void {
         jQuery(this.elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this._showDialog = false;
     }
 
     private _loadTemplate(tmpl): Observable<string> {
-        return this.http.get(tmpl)
-            .map(this.extractData)
+        return this._http.get(tmpl)
+            .map(this._extractData)
     }
 
-    private extractData(res: Response) {
+    private _extractData(res: Response): string {
         let body = res;
-        return body._body || '';
+        return body.text() || '';
     }
 }
