@@ -2,13 +2,14 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "ES5",
     "module": "commonjs",
     "moduleResolution": "node",
     "removeComments": false,
     "sourceMap": true,
     "outDir": "dist",
-    "sourceRoot": "src"
+    "sourceRoot": "src",
+    "noEmitOnError": true
   },
   "exclude": [
     "node_modules"
