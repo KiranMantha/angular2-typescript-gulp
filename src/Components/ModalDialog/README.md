@@ -18,19 +18,19 @@ This is represents the DOM container in which the dialog markup is dynamically i
 
 #####template
 This represents the inline markup which is fed to dialog body
-    ```bash
+    ```javascript
     example: dialog.config.template = "<h3>Dynamic Text</h3>"
     ```
 
 #####templateUrl
 This represents the path of the html file. The markup inside this path is dynamically loaded in the dialog body.
-    ```bash
+    ```javascript
     example: dialog.config.templateUrl = "test.html"
     ```
 
 #####closeByDocument
 This accepts a boolean value which control the closing of dialog when clicked outside the dialog body.
-    ```bash
+    ```javascript
     example: dialog.config.closeByDocument = false //default true
     ```
 
