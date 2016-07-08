@@ -19,8 +19,8 @@ export class ModalDialog {
     public template: string = '';
     public templateUrl: string = '';
 
-    constructor(private elementRef: ElementRef, private _http: Http) {
-        this._elementRef = elementRef;
+    constructor(private _ElementRef: ElementRef, private _http: Http) {
+        this._elementRef = _ElementRef;
         this._showDialog = false;
     }
 
@@ -47,7 +47,7 @@ export class ModalDialog {
     }
 
     private _close(): void {
-        jQuery(this.elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+        jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this._showDialog = false;
     }
 

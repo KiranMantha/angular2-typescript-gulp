@@ -9,16 +9,16 @@ import {TodoModal} from "../../Modals/todo-modal";
 })
 
 export class TodoDetailsComponent {
-    todoModal: TodoModal;
-    constructor(private route: ActivatedRoute, private todoService: TodoService) {
+    private _todoModal: TodoModal;
+    constructor(private _route: ActivatedRoute, private _todoService: TodoService) {
 
     }
 
     ngOnInit() {
-        this.route.params
+        this._route.params
             .map(params => params['id'])
             .subscribe((id) => {
-                this.todoModal = this.todoService.todos[Number(id) - 1];
+                this._todoModal = this._todoService.todos[Number(id) - 1];
             });
     }
 }

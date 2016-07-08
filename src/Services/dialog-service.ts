@@ -10,11 +10,11 @@ export class DialogService {
         closeByDocument: true
     };
 
-    constructor(private componentResolver: ComponentResolver) {
+    constructor(private _componentResolver: ComponentResolver) {
     }
 
-    openDialog() {
-        this.componentResolver.resolveComponent(ModalDialog).then(factory => {
+    public openDialog(): void {
+        this._componentResolver.resolveComponent(ModalDialog).then(factory => {
             let dialog = this.config.viewContainer.createComponent(factory);
             dialog.instance.templateUrl = this.config.templateUrl;
             dialog.instance.template = this.config.template;

@@ -16,10 +16,8 @@ enableProdMode()
     precompile: [TodoListComponent, TodoDetailsComponent]
 })
 
-export class App {
-    constructor(public vc: ViewContainerRef, public componentResolver: ComponentResolver;) {
+class App {
 
-    }
 }
 
 bootstrap(App, [provideRouter(AppRoutes), TodoService]).catch(err => console.error(err));
