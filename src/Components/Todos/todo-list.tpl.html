@@ -1,15 +1,16 @@
 <div>
-    <form (submit)="saveTodo()">
+    <form (submit)="_saveTodo()">
         <h4>Add todo here</h4>
-        <input class="form-control" type="text" [(ngModel)]="todoModel.title" />
+        <input class="form-control" type="text" [(ngModel)]="_todoModel.title" />
         <h4>Todo List</h4>
         <div class="list-group">
-            <a href="#" *ngIf="todoService.todos.length == 0" class="list-group-item">
+            <a href="#" *ngIf="_todoService.todos.length == 0" class="list-group-item">
                 No Todos yet!
             </a>
-            <a *ngFor="let todo of todoService.todos" class="list-group-item" [routerLink]="['todo/details', todo.id]">
+            <a *ngFor="let todo of _todoService.todos" class="list-group-item" [routerLink]="['todo/details', todo.id]">
                 {{todo.title}}
             </a>
         </div>
     </form>
+    <button class="btn btn-default btn-sm" (click)="_open()">OPen Modal</button>
 </div>
