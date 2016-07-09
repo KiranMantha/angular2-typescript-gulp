@@ -1,5 +1,5 @@
 ##Introduction
-A sample angularjs2 application using typescript and gulp
+A sample angularjs2 application using typescript and gulp. This provides the behaviour of 2-way bindings, handling click events, creating services, writing observables, creation of components dynamically and destroying them. If found difficulty, please feel free to post me and raise issues with proper description and if possible provide a plunker.
 
 ###Setup
 

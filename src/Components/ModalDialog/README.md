@@ -2,6 +2,13 @@
 
 Dialog is developed on the reference of ng-dialog in angular v1. It comprises of a template,component and service.
 
+####methods
+```bash
+dialog.openDialog()
+
+dialog.closeDialog()
+```
+
 ####Options:
 
 ```bash
@@ -12,6 +19,8 @@ dialog.config = {
     closeByDocument: boolean,
     classNameArray: Array<string>
 }
+
+dialog.callbackOnClose: function name
 ```
 
 #####viewContainer
@@ -43,6 +52,14 @@ This allows to add custom classes in addition of default class 'ng-dialog' to mo
 
 ```bash
 example: dialog.config.classNameArray = ['your-class-1','your-class-2']
+```
+
+#####callbackOnClose
+This allows to execute any function after dialog closed. You can only avail this option when you want to close dialog on button click by calling ```bash dialog.closeDialog()```. 
+
+```bash
+example: dialog.callbackOnClose = your-function-name
+         dialog.closeDialog(); //callbackOnClose only execute if you call closeDialog method.
 ```
 
 ####Usage:
