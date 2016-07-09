@@ -9,7 +9,8 @@ dialog.config = {
     viewContainer: ViewContainerRef,
     template: string,
     templateUrl: string,
-    closeByDocument: boolean
+    closeByDocument: boolean,
+    classNameArray: Array<string>
 }
 ```
 
@@ -35,6 +36,13 @@ This accepts a boolean value which control the closing of dialog when clicked ou
 
 ```bash
 example: dialog.config.closeByDocument = false //default true
+```
+
+#####classNameArray
+This allows to add custom classes in addition of default class 'ng-dialog' to modal dialog.
+
+```bash
+example: dialog.config.classNameArray = ['your-class-1','your-class-2']
 ```
 
 ####Usage:
