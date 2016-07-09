@@ -1,6 +1,6 @@
 import {Component, Inject, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import {ModalDialog} from "../ModalDialog/modal-dialog.component";
+import {ModalDialog} from "../ModalDialog/dialog.component";
 import {TodoService} from "../../Services/todo-service";
 import {DialogService} from "../../Services/dialog-service";
 import {TodoModal} from "../../Modals/todo-modal";

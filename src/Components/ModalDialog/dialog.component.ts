@@ -7,7 +7,7 @@ declare var jQuery: any;
 @Component({
     selector: 'ng-dialog',
     providers: [HTTP_PROVIDERS],
-    templateUrl: 'Components/ModalDialog/modal-dialog.tpl.html'
+    templateUrl: 'Components/ModalDialog/dialog.tpl.html'
 })
 
 export class ModalDialog {

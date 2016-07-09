@@ -27,7 +27,8 @@
     "gulp-typescript": "^2.8.0",
     "gulp-webserver": "^0.8.0",
     "typescript": "^1.7.0",
-    "typings": "^1.0.4"
+    "typings": "*",
+    "typings-core": "*"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
