@@ -1,12 +1,12 @@
 ##Introduction
-A sample angularjs2 application using typescript and gulp. This provides the behaviour of 2-way bindings, handling click events, creating services, writing observables, creation of components dynamically and destroying them. If found difficulty, please feel free to post me and raise issues with proper description and if possible provide a plunker.
+A sample angularjs2 application using typescript and gulp. This provides the implementation of 2-way bindings, handling click events, creating services, writing observables, creation of components dynamically and destroying them. If found difficulty, please feel free to post and raise issues with proper description and if possible provide a plunker.
 
 ###Setup
 
 1. Clone the repository to your local project folder
-
+    ```
     git clone -git-repository-url
-
+    ```
 2. Create dist folder at root. this will be your build folder.
 
 3. run 'npm install' to install the dependancies mentioned in package.json
