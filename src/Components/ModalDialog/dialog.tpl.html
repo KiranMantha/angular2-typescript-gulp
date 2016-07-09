@@ -1,4 +1,4 @@
-<div class="ng-dialog" *ngIf="_showDialog" (click)="closeDialog($event)">
+<div [ngClass]="_classArray" *ngIf="_showDialog" (click)="closeDialog($event)">
     <div class="ng-dialog-body">
         <span class="ng-dialog-close" (click)="closeDialog($event)"></span>
         <div class="ng-dialog-content" [innerHTML]="_content">

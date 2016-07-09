@@ -7,7 +7,8 @@ export class DialogService {
         viewContainer: ViewContainerRef,
         template: '',
         templateUrl: '',
-        closeByDocument: true
+        closeByDocument: true,
+        classNameArray: []
     };
 
     constructor(private _componentResolver: ComponentResolver) {
@@ -19,6 +20,7 @@ export class DialogService {
             dialog.instance.templateUrl = this.config.templateUrl;
             dialog.instance.template = this.config.template;
             dialog.instance.closeByDocument = this.config.closeByDocument;
+            dialog.instance.classNameArray = this.config.classNameArray;
             dialog.instance.openDialog();
         });
     }

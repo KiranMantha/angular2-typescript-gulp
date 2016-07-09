@@ -74,15 +74,20 @@ gulp.task('scripts.angular.rxjs', function () {
         .pipe(gulp.dest('dist/scripts/angular/rxjs'));
 });
 
+gulp.task('scripts.lodash', function () {
+    return gulp.src('node_modules/lodash/lodash.min.js')
+        .pipe(gulp.dest('dist/scripts/lodash'));
+});
+
 //copy the required scripts into dist folder
-gulp.task('scripts.lib', ['scripts.systemjsConfig', 'scripts.angular', 'scripts.angular.rxjs'], function () {
+gulp.task('scripts.lib', ['scripts.systemjsConfig', 'scripts.angular', 'scripts.angular.rxjs', 'scripts.lodash'], function () {
     return gulp.src([
         'node_modules/core-js/client/shim.min.js',
         'node_modules/zone.js/dist/zone.js',
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js'
     ]).pipe(gulp.dest('dist/scripts/lib'));
 });
 
@@ -94,14 +99,15 @@ gulp.task('scripts.html', function () {
 
 //copy bootstrap css files into styles folder
 gulp.task('scripts.bootstrap', function () {
-    return gulp.src([
-        'node_modules/bootstrap/dist/css/bootstrap.min.css',
-        'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-    ]).pipe(gulp.dest('dist/css'));
+    return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css').pipe(gulp.dest('dist/css'));
+    // return gulp.src([
+    //     'node_modules/bootstrap/dist/css/bootstrap.min.css',
+    //     'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+    // ]).pipe(gulp.dest('dist/css'));
 });
 
 //build css files from scss
-gulp.task('scripts.css', ['scripts.bootstrap'],function () {
+gulp.task('scripts.css', ['scripts.bootstrap'], function () {
     return gulp.src('src/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/css'));
