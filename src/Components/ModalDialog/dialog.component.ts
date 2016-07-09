@@ -12,11 +12,10 @@ declare var jQuery: any;
 })
 
 export class ModalDialog {
-    private _elementRef: ElementRef;    
-    private _showDialog: boolean;
+    private _elementRef: ElementRef; 
     private _content: string;
     private _classArray: Array<string> = [];
-
+    
     public closeByDocument: boolean;
     public template: string = '';
     public templateUrl: string = '';
@@ -25,12 +24,10 @@ export class ModalDialog {
 
     constructor(private _ElementRef: ElementRef,private _http: Http) {
         this._elementRef = _ElementRef;
-        this._showDialog = false;
     }
 
     public openDialog(): void {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
-        this._showDialog = true;
         if (this.templateUrl !== '') {
             this._loadTemplate(this.templateUrl).subscribe(content => this._content = content);
         } else {
@@ -57,11 +54,10 @@ export class ModalDialog {
 
     private _close(): void {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
-        this._showDialog = false;
         this.componentRef.destroy();
     }
 
-    private _loadTemplate(tmpl): Observable<string> {
+    private _loadTemplate(tmpl): string {
         return this._http.get(tmpl)
             .map(this._extractData)
     }
