@@ -1,13 +1,12 @@
 import {Component, Inject, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import {ModalDialog} from "../ModalDialog/dialog.component";
 import {TodoService} from "../../Services/todo-service";
 import {DialogService} from "../../Services/dialog-service";
 import {TodoModal} from "../../Modals/todo-modal";
 
 @Component({
   selector: 'todo-list',
-  directives: [ROUTER_DIRECTIVES, ModalDialog],
+  directives: [ROUTER_DIRECTIVES],
   templateUrl: 'Components/Todos/todo-list.tpl.html',
   providers: [DialogService]
 })
@@ -32,6 +31,7 @@ export class TodoListComponent {
     this._dialogService.config.classNameArray = ['ng-dialog','test'];
     this._dialogService.config.closeByDocument = false;
     this._dialogService.config.templateUrl = "Components/Todos/todo-details.tpl.html";
+    //this._dialogService.config.callbackOnClose = this._dialogService.closeDialog(); 
     this._dialogService.openDialog();
   }
 }

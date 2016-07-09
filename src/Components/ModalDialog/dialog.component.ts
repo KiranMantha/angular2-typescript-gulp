@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, ComponentRef} from '@angular/core';
 import { HTTP_PROVIDERS, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -12,7 +12,7 @@ declare var jQuery: any;
 })
 
 export class ModalDialog {
-    private _elementRef: ElementRef;
+    private _elementRef: ElementRef;    
     private _showDialog: boolean;
     private _content: string;
     private _classArray: Array<string> = [];
@@ -21,8 +21,9 @@ export class ModalDialog {
     public template: string = '';
     public templateUrl: string = '';
     public classNameArray: Array<string> = [];
+    public componentRef: ComponentRef;
 
-    constructor(private _ElementRef: ElementRef, private _http: Http) {
+    constructor(private _ElementRef: ElementRef,private _http: Http) {
         this._elementRef = _ElementRef;
         this._showDialog = false;
     }
@@ -57,6 +58,7 @@ export class ModalDialog {
     private _close(): void {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this._showDialog = false;
+        this.componentRef.destroy();
     }
 
     private _loadTemplate(tmpl): Observable<string> {
