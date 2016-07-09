@@ -24,7 +24,7 @@ dialog.callbackOnClose: function name
 ```
 
 #####viewContainer
-This is represents the DOM container in which the dialog markup is dynamically injected. This is a required parameter.
+This represents the DOM container in which the dialog markup is dynamically injected. This is a required parameter.
 
 #####template
 This represents the inline markup which is fed to dialog body
@@ -55,7 +55,7 @@ example: dialog.config.classNameArray = ['your-class-1','your-class-2']
 ```
 
 #####callbackOnClose
-This allows to execute any function after dialog closed. You can only avail this option when you want to close dialog on button click by calling ```bash dialog.closeDialog()```. 
+This allows to execute any function after dialog closed. You can only avail this option when you want to close dialog on button click by calling ```dialog.closeDialog()```. 
 
 ```bash
 example: dialog.callbackOnClose = your-function-name
