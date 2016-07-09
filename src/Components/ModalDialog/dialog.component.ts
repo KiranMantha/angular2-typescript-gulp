@@ -37,6 +37,8 @@ export class ModalDialog {
         }
         if (this.classNameArray.length > 0) {
             this._classArray = _.uniq(_.concat('ng-dialog', this.classNameArray));
+        } else {
+            this._classArray = ['ng-dialog'];
         }
     }
     public closeDialog(evt): void {
