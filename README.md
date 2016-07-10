@@ -15,7 +15,7 @@ A sample angularjs2 application using typescript and gulp. This provides the imp
 
 5. run 'gulp' to start application at localhost:8080. you can change the port number in gulpfile.js at line:159
 
-6. this repository is created on the basis of https://github.com/pkozlowski-opensource/ng2-play. if found any difficulty in this repo check ng2-play repo for basic structure.
+6. this repository is created on the basis of https://github.com/pkozlowski-opensource/ng2-play. if found any difficulty in this repo check ng2-play repo for simplified structure.
 
 
 #####Note: 
