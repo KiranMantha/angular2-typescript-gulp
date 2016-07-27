@@ -1,4 +1,4 @@
-import {Component, ElementRef, ComponentRef} from '@angular/core';
+import {Component, ElementRef, ComponentRef, ViewContainerRef} from '@angular/core';
 import { HTTP_PROVIDERS, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -12,17 +12,21 @@ declare var jQuery: any;
 })
 
 export class ModalDialog {
-    private _elementRef: ElementRef; 
+    private _elementRef: ElementRef;
     private _content: string;
     private _classArray: Array<string> = [];
-    
+    private _componentRef: ComponentRef<ModalDialog>;
+
     public closeByDocument: boolean;
     public template: string = '';
     public templateUrl: string = '';
     public classNameArray: Array<string> = [];
-    public componentRef: ComponentRef;
+    public component: Component;
 
-    constructor(private _ElementRef: ElementRef,private _http: Http) {
+    constructor(private _ElementRef: ElementRef,
+        private _http: Http,
+        public _viewContainerRef: ViewContainerRef
+    ) {
         this._elementRef = _ElementRef;
     }
 
@@ -30,6 +34,8 @@ export class ModalDialog {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         if (this.templateUrl !== '') {
             this._loadTemplate(this.templateUrl).subscribe(content => this._content = content);
+        } else if (this.component) {
+            this._loadComponent(this.component);
         } else {
             this._content = this.template;
         }
@@ -54,10 +60,14 @@ export class ModalDialog {
 
     private _close(): void {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
-        this.componentRef.destroy();
+        this._componentRef.destroy();
     }
 
-    private _loadTemplate(tmpl): string {
+    private _loadComponent(component): void {
+        jQuery(jQuery(this._elementRef.nativeElement).find('.ng-dialog-content')[0]).append(component);
+    }
+
+    private _loadTemplate(tmpl): Observable<string> {
         return this._http.get(tmpl)
             .map(this._extractData)
     }
