@@ -27,15 +27,8 @@ export class DialogService {
                 this._dialog.instance.template = this.config.template;
                 this._dialog.instance.closeByDocument = this.config.closeByDocument;
                 this._dialog.instance.classNameArray = this.config.classNameArray;
-                if (this.config.component) {
-                    this._createComponent(this.config.component, this._dialog.instance._viewContainerRef)
-                        .subscribe(component => {
-                            this._dialog.instance.component = component;
-                            this._dialog.instance.openDialog();
-                        });
-                } else {
-                    this._dialog.instance.openDialog();
-                }
+                this._dialog.instance.component = this.config.component;
+                this._dialog.instance.openDialog();
             });
     }
 

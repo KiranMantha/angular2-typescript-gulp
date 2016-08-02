@@ -21,7 +21,7 @@ export class TodoListComponent {
 
   }
   private _todoModel = new TodoModal();
- private _saveTodo(): void {
+  private _saveTodo(): void {
     this._todoModel.id = this._todoService.todos.length + 1;
     this._todoService.todos.push(this._todoModel);
     this._todoModel = new TodoModal();
