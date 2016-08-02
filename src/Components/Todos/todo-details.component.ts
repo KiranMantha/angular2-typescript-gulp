@@ -15,10 +15,16 @@ export class TodoDetailsComponent {
     }
 
     ngOnInit() {
-        this._route.params
-            .map(params => params['id'])
-            .subscribe((id) => {
-                this._todoModal = this._todoService.todos[Number(id) - 1];
-            });
+        if (this._route.params._value.id) {
+            this._route.params
+                .map(params => params['id'])
+                .subscribe((id) => {
+                    if (id) {
+                        this._todoModal = this._todoService.todos[Number(id) - 1];
+                    }
+                });
+        } else {
+            this._todoModal = this._todoService.todos[1];
+        }
     }
 }

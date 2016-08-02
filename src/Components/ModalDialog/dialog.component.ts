@@ -1,4 +1,4 @@
-import {Component, ElementRef, ComponentRef} from '@angular/core';
+import {Component, DynamicComponentLoader, ElementRef, ComponentRef, ApplicationRef, Injector} from '@angular/core';
 import { HTTP_PROVIDERS, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -12,24 +12,33 @@ declare var jQuery: any;
 })
 
 export class ModalDialog {
-    private _elementRef: ElementRef; 
+    private _elementRef: ElementRef;
     private _content: string;
     private _classArray: Array<string> = [];
-    
+
     public closeByDocument: boolean;
     public template: string = '';
     public templateUrl: string = '';
     public classNameArray: Array<string> = [];
-    public componentRef: ComponentRef;
+    public component: Component;
 
-    constructor(private _ElementRef: ElementRef,private _http: Http) {
+    constructor(private _ElementRef: ElementRef,
+        private _http: Http,
+        private dcl: DynamicComponentLoader,
+        private injector: Injector,
+        private appRef: ApplicationRef
+    ) {
         this._elementRef = _ElementRef;
     }
 
     public openDialog(): void {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         if (this.templateUrl !== '') {
-            this._loadTemplate(this.templateUrl).subscribe(content => this._content = content);
+            this._loadTemplate(this.templateUrl).subscribe(content => { 
+                jQuery(this._elementRef.nativeElement).find('.ng-dialog-content')[0].innerHTML = content;
+            });
+        } else if (this.component) {
+            this._loadComponent(this.component);
         } else {
             this._content = this.template;
         }
@@ -57,7 +66,13 @@ export class ModalDialog {
         this.componentRef.destroy();
     }
 
-    private _loadTemplate(tmpl): string {
+    private _loadComponent(component): void {
+        this.dcl.loadAsRoot(this.component, '.ng-dialog-content', this.injector).then(componentref => {
+            this.appRef._loadComponent(componentref);
+        });
+    }
+
+    private _loadTemplate(tmpl): Observable<string> {
         return this._http.get(tmpl)
             .map(this._extractData)
     }
