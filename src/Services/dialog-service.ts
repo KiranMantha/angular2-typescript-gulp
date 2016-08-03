@@ -13,7 +13,7 @@ export class DialogService {
         classNameArray: [],
         component: Component
     };
-    public callbackOnClose: any;
+    public callbackOnClose: () => void;
     private _dialog: any;
 
     constructor(private _componentResolver: ComponentResolver) {
@@ -28,6 +28,7 @@ export class DialogService {
                 this._dialog.instance.closeByDocument = this.config.closeByDocument;
                 this._dialog.instance.classNameArray = this.config.classNameArray;
                 this._dialog.instance.component = this.config.component;
+                this._dialog.instance.callbackOnClose = this.callbackOnClose;
                 this._dialog.instance.openDialog();
             });
     }
@@ -45,8 +46,5 @@ export class DialogService {
 
     public closeDialog(): void {
         this._dialog.instance.closeDialog();
-        if (_.isFunction(this.callbackOnClose)) {
-            this.callbackOnClose();
-        }
     }
 }

@@ -1,38 +1,99 @@
-.ng-dialog-open {
-    overflow: hidden;
+@-webkit-keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
+
+@-webkit-keyframes ngdialog-fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes ngdialog-fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.ng-dialog-open {
+  overflow: hidden;
+}
+
 .ng-dialog {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0px;
+  z-index: 1000;
+
+  .ng-dialog-overlay {
     position: fixed;
     top: 0px;
     bottom: 0px;
     right: 0px;
     left: 0px;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    animation: ngdialog-fadein 0.5s;
+  }
 
-    .ng-dialog-body {
-        position: relative;
-        width: 600px;
-        margin: 30px auto;
-        background-color: #fff;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-        background-clip: padding-box;
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 6px;
-        outline: 0;    
-        .ng-dialog-close {
-            position: absolute;
-            top: 7px;
-            right: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: 600;
-            opacity: 0.3;
-            border: none;
-            background: transparent;
-            &::before {
-                content: '×';
-            }
-        }
+  .ng-dialog-body {
+    animation: ngdialog-flyin 0.5s;
+    margin: auto;
+    position: relative;
+    max-width: 100%;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    outline: 0;
+    width: 500px;
+
+    .ng-dialog-close {
+      position: absolute;
+      top: 7px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 600;
+      opacity: 0.3;
+      border: none;
+      background: transparent;
+
+      &::before {
+        content: '×';
+      }
     }
+  }
 }
