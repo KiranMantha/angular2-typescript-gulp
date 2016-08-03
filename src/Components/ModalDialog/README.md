@@ -17,7 +17,8 @@ dialog.config = {
     template: string,
     templateUrl: string,
     closeByDocument: boolean,
-    classNameArray: Array<string>
+    classNameArray: Array<string>,
+    component: Component
 }
 
 dialog.callbackOnClose: function name
@@ -39,6 +40,12 @@ This represents the path of the html file. The markup inside this path is dynami
 ```bash
 example: dialog.config.templateUrl = "test.html"
 ```
+#####component
+This represents the component which is to be dynamically loaded in the dialog body.
+
+```bash
+example: dialog.config.component = your-component-name;
+```
 
 #####closeByDocument
 This accepts a boolean value which control the closing of dialog when clicked outside the dialog body.
@@ -59,7 +66,6 @@ This allows to execute any function after dialog closed. You can only avail this
 
 ```bash
 example: dialog.callbackOnClose = your-function-name
-         dialog.closeDialog(); //callbackOnClose only execute if you call closeDialog method.
 ```
 
 ####Usage:
@@ -82,6 +88,11 @@ export class yourClass {
     yourmethod-to-call-dialog(){
         this._dialogService.config.viewContainer = this._viewContainer; //Required. won't work if not passed.        
         this._dialogService.config.templateUrl = "your-template-url";
+        this._dialogService.config.classNameArray = ['ng-dialog', 'test'];
+        this._dialogService.config.closeByDocument = false;
+        this._dialogService.config.component = DetailsComponent;
+        this._dialogService.config.templateUrl = "Components/Todos/todo-details.tpl.html";
+        this._dialogService.callbackOnClose = function () { alert('Called on dialog close'); }
         this._dialogService.openDialog();
     }
 }

@@ -30,9 +30,10 @@ export class TodoListComponent {
   private _open(): void {
     this._dialogService.config.viewContainer = this._viewContainer;
     this._dialogService.config.classNameArray = ['ng-dialog', 'test'];
-    this._dialogService.config.closeByDocument = false;
+    //this._dialogService.config.closeByDocument = false;
     this._dialogService.config.component = TodoDetailsComponent;
     //this._dialogService.config.templateUrl = "Components/Todos/todo-details.tpl.html";
     this._dialogService.openDialog();
+    this._dialogService.callbackOnClose = function () { alert('CAlled on dialog close'); }
   }
 }

@@ -21,6 +21,7 @@ export class ModalDialog {
     public templateUrl: string = '';
     public classNameArray: Array<string> = [];
     public component: Component;
+    public callbackOnClose: any;
 
     constructor(private _ElementRef: ElementRef,
         private _http: Http,
@@ -64,6 +65,9 @@ export class ModalDialog {
     private _close(): void {
         jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this.componentRef.destroy();
+        if (_.isFunction(this.callbackOnClose)) {
+            this.callbackOnClose();
+        }
     }
 
     private _loadComponent(component): void {
