@@ -5,9 +5,11 @@ import {DialogService} from "../../Services/dialog-service";
 import {TodoModal} from "../../Modals/todo-modal";
 import {TodoDetailsComponent} from "./todo-details.component";
 
+import {CarListComponent} from "../Cars/cars-list.component";
+
 @Component({
   selector: 'todo-list',
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, CarListComponent],
   templateUrl: 'Components/Todos/todo-list.tpl.html',
   providers: [DialogService]
 })

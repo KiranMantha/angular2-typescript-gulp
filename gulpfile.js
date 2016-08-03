@@ -108,7 +108,7 @@ gulp.task('scripts.bootstrap', function () {
 
 //build css files from scss
 gulp.task('scripts.css', ['scripts.bootstrap'], function () {
-    return gulp.src('src/styles/**/*.scss')
+    return gulp.src('src/styles/style.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/css'));
 });

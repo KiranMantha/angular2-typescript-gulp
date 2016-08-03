@@ -6,8 +6,10 @@ import {ROUTER_DIRECTIVES, provideRouter} from "@angular/router";
 import {TodoListComponent} from "./components/Todos/todo-list.component";
 import {TodoDetailsComponent} from "./components/Todos/todo-details.component";
 import {TodoService} from "./Services/todo-service";
-import {AppRoutes} from "./Routes/Routes"
+import {AppRoutes} from "./Routes/Routes";
+
 enableProdMode()
+declare var $: any;
 
 @Component({
     selector: "app",

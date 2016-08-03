@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {TodoModal} from "../Modals/todo-modal";
+import {CarModal} from "../Modals/car-modal";
 @Injectable()
 
 export class CarsService{
-    public cars:Array<TodoModal> = [];
+    public cars:Array<CarModal> = [];
 }

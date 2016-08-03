@@ -3,8 +3,6 @@ import { HTTP_PROVIDERS, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
 
-declare var jQuery: any;
-
 @Component({
     selector: 'ng-dialog',
     providers: [HTTP_PROVIDERS],
@@ -33,10 +31,10 @@ export class ModalDialog {
     }
 
     public openDialog(): void {
-        jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+        $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         if (this.templateUrl !== '') {
             this._loadTemplate(this.templateUrl).subscribe(content => { 
-                jQuery(this._elementRef.nativeElement).find('.ng-dialog-content')[0].innerHTML = content;
+                $(this._elementRef.nativeElement).find('.ng-dialog-content')[0].innerHTML = content;
             });
         } else if (this.component) {
             this._loadComponent(this.component);
@@ -63,7 +61,7 @@ export class ModalDialog {
     }
 
     private _close(): void {
-        jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+        $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this.componentRef.destroy();
         if (_.isFunction(this.callbackOnClose)) {
             this.callbackOnClose();
