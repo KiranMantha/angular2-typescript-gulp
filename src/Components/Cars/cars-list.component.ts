@@ -12,19 +12,23 @@ import {CarDetailsComponent} from "./car-detail.component";
 })
 
 export class CarListComponent {
+  private _carModal = new CarModal();
+  private cars: any;
   constructor(
     @Inject(CarsService) private _carsService,
     @Inject(DialogService) private _dialogService,
     private _viewContainer: ViewContainerRef
   ) {
-    this.cars = this._carsService.cars;
   }
-  private _carModal = new CarModal();
-  private cars: any;
+
 
   refreashCarsList() {
-    this.cars = this._carsService.cars;
+    this._carsService.$cars.subscribe(updatedCars => {
+      this.cars = updatedCars;
+    });
   }
+
+  refreashCarsList();
 
   private _newCar(): void {
     this._carsService.selectedCar = new CarModal();

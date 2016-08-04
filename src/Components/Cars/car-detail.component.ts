@@ -16,17 +16,11 @@ export class CarDetailsComponent {
         @Inject(CarsService) private _carsService,
         @Inject(DialogService) private _dialogService
     ) {
-        
+
     }
 
     private _saveCar(): void {
-        if (this._carModal.id === 0) {
-            this._carModal.id = this._carsService.cars.length + 1;
-            this._carsService.cars.push(this._carModal);
-        }
-        else {
-
-        }
+        this._carsService.addCar(this._carModal);
         this._carModal = new CarModal();
     }
 
