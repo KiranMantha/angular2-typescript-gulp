@@ -4,4 +4,5 @@ import {CarModal} from "../Modals/car-modal";
 
 export class CarsService{
     public cars:Array<CarModal> = [];
+    public selectedCar: CarModal = new CarModal();
 }

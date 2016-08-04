@@ -4,7 +4,7 @@ import {TodoService} from "../../Services/todo-service";
 import {TodoModal} from "../../Modals/todo-modal";
 
 @Component({
-    selector: 'todo-details',
+    selector: '[todo-details]',
     templateUrl: 'Components/Todos/todo-details.tpl.html'
 })
 

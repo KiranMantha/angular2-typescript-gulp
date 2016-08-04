@@ -8,7 +8,7 @@ import {TodoDetailsComponent} from "./todo-details.component";
 import {CarListComponent} from "../Cars/cars-list.component";
 
 @Component({
-  selector: 'todo-list',
+  selector: '[todo-list]',
   directives: [ROUTER_DIRECTIVES, CarListComponent],
   templateUrl: 'Components/Todos/todo-list.tpl.html',
   providers: [DialogService]

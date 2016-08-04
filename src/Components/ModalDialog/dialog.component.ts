@@ -4,7 +4,7 @@ import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'ng-dialog',
+    selector: '[ng-dialog]',
     providers: [HTTP_PROVIDERS],
     templateUrl: 'Components/ModalDialog/dialog.tpl.html'
 })
@@ -13,12 +13,14 @@ export class ModalDialog {
     private _elementRef: ElementRef;
     private _content: string;
     private _classArray: Array<string> = [];
+    private _componentRef: ComponentRef;
 
     public closeByDocument: boolean;
     public template: string = '';
     public templateUrl: string = '';
     public classNameArray: Array<string> = [];
     public component: Component;
+    public callBackComponent: Component;
     public callbackOnClose: any;
 
     constructor(private _ElementRef: ElementRef,
@@ -33,7 +35,7 @@ export class ModalDialog {
     public openDialog(): void {
         $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         if (this.templateUrl !== '') {
-            this._loadTemplate(this.templateUrl).subscribe(content => { 
+            this._loadTemplate(this.templateUrl).subscribe(content => {
                 $(this._elementRef.nativeElement).find('.ng-dialog-content')[0].innerHTML = content;
             });
         } else if (this.component) {
@@ -63,8 +65,8 @@ export class ModalDialog {
     private _close(): void {
         $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         this.componentRef.destroy();
-        if (_.isFunction(this.callbackOnClose)) {
-            this.callbackOnClose();
+        if (_.isFunction(this.callBackComponent[this.callbackOnClose])) {
+           this.callBackComponent[this.callbackOnClose]();
         }
     }
 

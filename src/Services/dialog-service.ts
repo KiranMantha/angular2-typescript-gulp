@@ -11,7 +11,8 @@ export class DialogService {
         templateUrl: '',
         closeByDocument: true,
         classNameArray: [],
-        component: Component
+        component: Component,
+        callBackComponent: Component
     };
     public callbackOnClose: () => void;
     private _dialog: any;
@@ -28,6 +29,7 @@ export class DialogService {
                 this._dialog.instance.closeByDocument = this.config.closeByDocument;
                 this._dialog.instance.classNameArray = this.config.classNameArray;
                 this._dialog.instance.component = this.config.component;
+                this._dialog.instance.callBackComponent = this.config.callBackComponent;
                 this._dialog.instance.callbackOnClose = this.callbackOnClose;
                 this._dialog.instance.openDialog();
             });

@@ -12,7 +12,7 @@ enableProdMode()
 declare var $: any;
 
 @Component({
-    selector: "app",
+    selector: "[app]",
     directives: [ROUTER_DIRECTIVES, TodoListComponent, TodoDetailsComponent],
     templateUrl: "_main.tpl.html",
     precompile: [TodoListComponent, TodoDetailsComponent]

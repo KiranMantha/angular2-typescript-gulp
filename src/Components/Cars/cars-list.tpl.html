@@ -1,6 +1,6 @@
 <div class="row">
     <div style="text-align:right">
-        <button class="btn btn-primary btn-sm">Create Car</button>
+        <button class="btn btn-primary btn-sm" (click)="_newCar()">Create Car</button>
     </div>
     <table class="table table-vmiddle table-hover responsive-table">
         <tr>
@@ -9,7 +9,7 @@
             <th>Car Type</th>
             <th>Company</th>
         </tr>
-        <tr *ngFor="let car of _carsService.cars">
+        <tr *ngFor="let car of cars">
             <td>
                 {{car.id}}
             </td>
@@ -23,7 +23,7 @@
                 {{car.company}}
             </td>
         </tr>
-        <tr *ngIf="_carsService.cars.length===0">
+        <tr *ngIf="cars.length===0">
             <td colspan="4">No Cars To Display..</td>
         </tr>
     </table>
