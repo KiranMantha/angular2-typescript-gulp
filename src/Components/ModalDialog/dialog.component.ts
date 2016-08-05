@@ -64,10 +64,10 @@ export class ModalDialog {
 
     private _close(): void {
         $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
-        this.componentRef.destroy();
         if (_.isFunction(this.callBackComponent[this.callbackOnClose])) {
            this.callBackComponent[this.callbackOnClose]();
         }
+        this.componentRef.destroy();
     }
 
     private _loadComponent(component): void {
