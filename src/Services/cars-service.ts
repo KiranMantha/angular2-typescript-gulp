@@ -6,7 +6,7 @@ import {BehaviorSubject} from "rxjs/Rx";
 export class CarsService {
     private _cars = new BehaviorSubject<CarModal[]>([]);
     public $cars = this._cars.asObservable();
-    public selectedCar: CarModal = new CarModal();
+    public selectedCar: CarModal;
     private _dataStore: {
         cars: CarModal[]
     } = { cars: [] };
@@ -17,6 +17,5 @@ export class CarsService {
             this._dataStore.cars.push(car);
         }
         this._cars.next(this._dataStore.cars);
-        this._cars.complete();
     }
 }

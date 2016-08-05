@@ -66,10 +66,7 @@ export class ModalDialog implements AfterViewInit {
     private _close(): void {
         $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         //this.childComponentRef.destroy();
-        this.childComponentRef.changeDetectorRef.detectChanges();
-        $.each(this.childComponentRef.instance, function (index, value) {
-            console.log(value);
-        });
+        //this.appRef.tick();
         this.componentRef.destroy();
         if (_.isFunction(this.callBackComponent[this.callbackOnClose])) {
             this.callBackComponent[this.callbackOnClose]();
@@ -92,24 +89,5 @@ export class ModalDialog implements AfterViewInit {
     private _extractData(res: Response): string {
         let body = res;
         return body.text() || '';
-    }
-
-    ngAfterViewInit() {
-        // if (this.componentRef)
-        //     this.componentRef.destroy();
-
-        // this.componentResolver.resolveComponent(ChildComponent)
-        //     .then((factory: ComponentFactory<any>) => {
-        //         let componentRef = this.contentHandle.createComponent(factory);
-
-        //         componentRef.instance['child_component_property'] = 'dummy value for child';
-
-        //         componentRef.changeDetectorRef.detectChanges();
-        //         componentRef.onDestroy(() => {
-        //             componentRef.changeDetectorRef.detach();
-        //         });
-        //         this.contentComponentRef = componentRef;
-        //         return componentRef;
-        //     });
     }
 }

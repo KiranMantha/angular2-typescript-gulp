@@ -1,4 +1,4 @@
-import {Component, Inject, ComponentResolver, ViewContainerRef, ApplicationRef} from '@angular/core';
+import {Component, Inject, ComponentResolver, ViewContainerRef, NgZone} from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {CarsService} from "../../Services/cars-service";
 import {DialogService} from "../../Services/dialog-service";
@@ -8,7 +8,7 @@ import {CarDetailsComponent} from "./car-detail.component";
 @Component({
   selector: '[cars-list]',
   templateUrl: 'Components/cars/cars-list.tpl.html',
-  providers: [DialogService, CarsService]
+  directives: [CarDetailsComponent]
 })
 
 export class CarListComponent {
@@ -18,15 +18,8 @@ export class CarListComponent {
     @Inject(CarsService) private _carsService,
     @Inject(DialogService) private _dialogService,
     private _viewContainer: ViewContainerRef,
-    private _applicationRef: ApplicationRef
+    private zone: NgZone
   ) {
-  }
-
-
-  refreashCarsList() {
-    this._carsService.$cars.subscribe(updatedCars => {
-      this.cars = updatedCars;
-    });
   }
 
   refreashCarsList();
@@ -37,14 +30,14 @@ export class CarListComponent {
     this._dialogService.config.classNameArray = ['ng-dialog', 'car'];
     this._dialogService.config.closeByDocument = false;
     this._dialogService.config.component = CarDetailsComponent;
-    this._dialogService.config.callBackComponent = this;
-    this._dialogService.callbackOnClose = 'refreashCarsList';
     this._dialogService.openDialog();
   }
 
   ngOnInit() {
     this._carsService.$cars.subscribe(updatedCars => {
-      this.cars = updatedCars;
+      this.zone.run(() => {
+        this.cars = updatedCars;
+      });
     });
   }
 }

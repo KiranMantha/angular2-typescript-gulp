@@ -6,6 +6,7 @@ import {ROUTER_DIRECTIVES, provideRouter} from "@angular/router";
 import {TodoListComponent} from "./components/Todos/todo-list.component";
 import {TodoDetailsComponent} from "./components/Todos/todo-details.component";
 import {TodoService} from "./Services/todo-service";
+import {CarsService} from "./Services/cars-service";
 import {AppRoutes} from "./Routes/Routes";
 
 enableProdMode()
@@ -22,4 +23,4 @@ class App {
 
 }
 
-bootstrap(App, [provideRouter(AppRoutes), TodoService]).catch(err => console.error(err));
+bootstrap(App, [provideRouter(AppRoutes), TodoService, CarsService]).catch(err => console.error(err));
