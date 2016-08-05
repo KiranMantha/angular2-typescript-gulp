@@ -40,6 +40,10 @@ export class DialogService {
             this._componentResolver.resolveComponent(_componentName).then(factory => {
                 let _component = _viewContainer.createComponent(factory);
                 _component.instance.componentRef = _component;
+                _component.changeDetectorRef.detectChanges();
+                _component.onDestroy(() => {
+                    _component.changeDetectorRef.detach();
+                });
                 obs.next(_component);
                 obs.complete();
             });

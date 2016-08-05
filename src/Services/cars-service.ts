@@ -1,22 +1,15 @@
-import {Observable, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {CarModal} from "../Modals/car-modal";
-import {Subject} from "rxjs/Rx";
+import {BehaviorSubject} from "rxjs/Rx";
 
 @Injectable()
 export class CarsService {
-    private _cars: Subject<CarModal[]>;
-    public selectedCar: CarModal;
+    private _cars = new BehaviorSubject<CarModal[]>([]);
+    public $cars = this._cars.asObservable();
+    public selectedCar: CarModal = new CarModal();
     private _dataStore: {
         cars: CarModal[]
-    };
-    constructor() {
-        this._cars = <Subject<CarModal[]>>new Subject();
-        this.selectedCar = new CarModal();
-        this._dataStore = { cars: [] };
-    }
-    get $cars() {
-        return this._cars.asObservable();
-    }
+    } = { cars: [] };
 
     addCar(car: CarModal) {
         if (car.id === 0) {
@@ -24,5 +17,6 @@ export class CarsService {
             this._dataStore.cars.push(car);
         }
         this._cars.next(this._dataStore.cars);
+        this._cars.complete();
     }
 }

@@ -1,4 +1,4 @@
-import {Component, DynamicComponentLoader, ElementRef, ComponentRef, ApplicationRef, Injector} from '@angular/core';
+import {Component, DynamicComponentLoader, ElementRef, ComponentRef, ApplicationRef, Injector, AfterViewInit} from '@angular/core';
 import { HTTP_PROVIDERS, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
@@ -9,7 +9,7 @@ import * as _ from 'lodash';
     templateUrl: 'Components/ModalDialog/dialog.tpl.html'
 })
 
-export class ModalDialog {
+export class ModalDialog implements AfterViewInit {
     private _elementRef: ElementRef;
     private _content: string;
     private _classArray: Array<string> = [];
@@ -49,6 +49,7 @@ export class ModalDialog {
             this._classArray = ['ng-dialog'];
         }
     }
+
     public closeDialog(evt): void {
         if (this.closeByDocument) {
             if (evt.target.classList.contains('ng-dialog') || evt.target.classList.contains('ng-dialog-close')) {
@@ -64,17 +65,24 @@ export class ModalDialog {
 
     private _close(): void {
         $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
-        if (_.isFunction(this.callBackComponent[this.callbackOnClose])) {
-           this.callBackComponent[this.callbackOnClose]();
-        }
+        //this.childComponentRef.destroy();
+        this.childComponentRef.changeDetectorRef.detectChanges();
+        $.each(this.childComponentRef.instance, function (index, value) {
+            console.log(value);
+        });
         this.componentRef.destroy();
+        if (_.isFunction(this.callBackComponent[this.callbackOnClose])) {
+            this.callBackComponent[this.callbackOnClose]();
+        }
     }
 
     private _loadComponent(component): void {
         this.dcl.loadAsRoot(this.component, '.ng-dialog-content', this.injector).then(componentref => {
             this.appRef._loadComponent(componentref);
+            this.childComponentRef = componentref;
         });
     }
+
 
     private _loadTemplate(tmpl): Observable<string> {
         return this._http.get(tmpl)
@@ -84,5 +92,24 @@ export class ModalDialog {
     private _extractData(res: Response): string {
         let body = res;
         return body.text() || '';
+    }
+
+    ngAfterViewInit() {
+        // if (this.componentRef)
+        //     this.componentRef.destroy();
+
+        // this.componentResolver.resolveComponent(ChildComponent)
+        //     .then((factory: ComponentFactory<any>) => {
+        //         let componentRef = this.contentHandle.createComponent(factory);
+
+        //         componentRef.instance['child_component_property'] = 'dummy value for child';
+
+        //         componentRef.changeDetectorRef.detectChanges();
+        //         componentRef.onDestroy(() => {
+        //             componentRef.changeDetectorRef.detach();
+        //         });
+        //         this.contentComponentRef = componentRef;
+        //         return componentRef;
+        //     });
     }
 }
