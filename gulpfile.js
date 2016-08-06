@@ -107,9 +107,8 @@ gulp.task('scripts.css', function () {
 
 //build font files from bootstrap fonts
 gulp.task('scripts.fonts', function () {
-    return gulp.src(['!node_modules/bootstrap-sass/assets/fonts/bootstrap/*.eot','node_modules/bootstrap-sass/assets/fonts/bootstrap/*'])
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('dist/fonts/bootstrap'));
+    return gulp.src('node_modules/font-awesome/fonts/*')
+        .pipe(gulp.dest('dist/fonts'));
 });
 
 //compile typescript files to javascript files
@@ -125,7 +124,7 @@ gulp.task('scripts.ts', function () {
 });
 
 //unified task for scripts
-gulp.task('scripts', gulpSequence('scripts.lib', 'scripts.html', 'scripts.css','scripts.ts'));
+gulp.task('scripts', gulpSequence('scripts.fonts', 'scripts.lib', 'scripts.html', 'scripts.css', 'scripts.ts'));
 //<-------------build tasks------------->//
 
 

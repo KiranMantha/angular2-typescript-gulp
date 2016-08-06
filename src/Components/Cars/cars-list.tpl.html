@@ -2,5 +2,8 @@
     <div style="text-align:right">
         <button class="btn btn-primary btn-sm" (click)="_newCar()">Create Car</button>
     </div>
-    <div grid-view [gvOptions] = "gvOptions"></div>
+    <div class="container" 
+        grid-view [gvOptions]="gvOptions" 
+        (viewEvent)="_viewCar($event)"
+    ></div>
 </div>

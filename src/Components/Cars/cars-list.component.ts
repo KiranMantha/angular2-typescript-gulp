@@ -23,10 +23,8 @@ export class CarListComponent {
   ) {
   }
 
-  refreashCarsList();
-
-  private _newCar(): void {
-    this._carsService.selectedCar = new CarModal();
+  private _showModal(modal: CarModal) {
+    this._carsService.selectedCar = modal;
     this._dialogService.config.viewContainer = this._viewContainer;
     this._dialogService.config.classNameArray = ['ng-dialog', 'car'];
     this._dialogService.config.closeByDocument = false;
@@ -34,18 +32,25 @@ export class CarListComponent {
     this._dialogService.openDialog();
   }
 
+  private _newCar(): void {
+    this._showModal(new CarModal());
+  }
+
+  private _viewCar(evt) {
+    this._showModal(evt.modal);
+  }
+
   ngOnInit() {
     this._carsService.$cars.subscribe(updatedCars => {
       this.zone.run(() => {
-        this.cars = updatedCars;
         this.gvOptions = {
           data: updatedCars,
+          showActions: true,
           columnDefs: [
             { displayName: 'Id', fieldName: 'id' },
             { displayName: 'Car Name', fieldName: 'name' },
             { displayName: 'Car Type', fieldName: 'type' },
-            { displayName: 'Car Company', fieldName: 'company' },
-            { displayName: 'Actions', template: '<span class="btn btn-primary btn-sm glyphicon glyphicon-pencil"></span>' }
+            { displayName: 'Car Company', fieldName: 'company' }
           ]
         };
       });

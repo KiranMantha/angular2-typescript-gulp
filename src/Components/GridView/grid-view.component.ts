@@ -1,28 +1,35 @@
-import {Component, NgZone, Input} from "@angular/core";
+import {Component, NgZone, Input, Output, EventEmitter} from "@angular/core";
+import {KeysPipe} from "../../Pipes/keys.pipe";
 import * as _ from 'lodash';
 
 @Component({
     selector: '[grid-view]',
-    templateUrl: 'Components/GridView/grid-view.tpl.html'
+    templateUrl: 'Components/GridView/grid-view.tpl.html',
+    pipes: [KeysPipe]
 })
 
 export class GridView {
-    @Input() gvOptions: any = {
-        data: [],
-        columnDefs: []
-    };
-    private _coldefs: any = [];
     constructor(private zone: NgZone) { }
 
-    ngOnInit() {
-        // this.zone.run(() => {
-        //     if (!this.gvOptions.columns || this.gvOptions.columns.length === 0) {
-        //         $.each(this.gvOptions.data, function (index, value) {
-        //             console.log(index);
-        //             console.log(value);
-        //         })
-        //     }
-        // });
+    @Input() gvOptions: any = {
+        data: [],
+        columnDefs: [],
+        showActions: false
+    };
+
+    @Output() viewEvent = new EventEmitter();
+    @Output() editEvent = new EventEmitter();
+    @Output() deleteEvent = new EventEmitter();
+
+    private _view(evt: any, row: any) {
+        this.viewEvent.next({ event: evt, modal: row });
+    }
+
+    private _edit(evt: any, row: any) {
+        this.editEvent.next({ event: evt, modal: row });
+    }
+
+    private _delete(evt: any, row: any) {
+        this.deleteEvent.next({ event: evt, modal: row });
     }
 }
-
