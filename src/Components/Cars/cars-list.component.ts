@@ -4,16 +4,17 @@ import {CarsService} from "../../Services/cars-service";
 import {DialogService} from "../../Services/dialog-service";
 import {CarModal} from "../../Modals/car-modal";
 import {CarDetailsComponent} from "./car-detail.component";
+import {GridView} from "../GridView/grid-view.component";
 
 @Component({
   selector: '[cars-list]',
   templateUrl: 'Components/cars/cars-list.tpl.html',
-  directives: [CarDetailsComponent]
+  directives: [CarDetailsComponent, GridView]
 })
 
 export class CarListComponent {
   private _carModal = new CarModal();
-  private cars: any;
+  private gvOptions: any;
   constructor(
     @Inject(CarsService) private _carsService,
     @Inject(DialogService) private _dialogService,
@@ -37,6 +38,16 @@ export class CarListComponent {
     this._carsService.$cars.subscribe(updatedCars => {
       this.zone.run(() => {
         this.cars = updatedCars;
+        this.gvOptions = {
+          data: updatedCars,
+          columnDefs: [
+            { displayName: 'Id', fieldName: 'id' },
+            { displayName: 'Car Name', fieldName: 'name' },
+            { displayName: 'Car Type', fieldName: 'type' },
+            { displayName: 'Car Company', fieldName: 'company' },
+            { displayName: 'Actions', template: '<span class="btn btn-primary btn-sm glyphicon glyphicon-pencil"></span>' }
+          ]
+        };
       });
     });
   }

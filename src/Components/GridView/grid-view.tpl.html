@@ -1,0 +1,22 @@
+<table class="table table-vmiddle table-hover">
+    <thead>
+        <tr>
+            <th *ngFor=" let column of gvOptions.columnDefs ">
+                {{column.displayName}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor=" let row of gvOptions.data ">
+            <td *ngFor=" let column of gvOptions.columnDefs ">
+                {{row[column.fieldName]}}
+                <div *ngIf="column.template" [innerHTML] = "column.template"></div>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr *ngIf="gvOptions.data.length===0 ">
+            <td [attr.colspan]="gvOptions.columnDefs.length">No Data To Display..</td>
+        </tr>
+    </tfoot>
+</table>

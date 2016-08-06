@@ -2,29 +2,5 @@
     <div style="text-align:right">
         <button class="btn btn-primary btn-sm" (click)="_newCar()">Create Car</button>
     </div>
-    <table class="table table-vmiddle table-hover responsive-table">
-        <tr>
-            <th>Id</th>
-            <th>Car Name</th>
-            <th>Car Type</th>
-            <th>Company</th>
-        </tr>
-        <tr *ngFor="let car of cars">
-            <td>
-                {{car.id}}
-            </td>
-            <td>
-                {{car.name}}
-            </td>
-            <td>
-                {{car.type}}
-            </td>
-            <td>
-                {{car.company}}
-            </td>
-        </tr>
-        <tr *ngIf="cars.length===0">
-            <td colspan="4">No Cars To Display..</td>
-        </tr>
-    </table>
+    <div grid-view [gvOptions] = "gvOptions"></div>
 </div>

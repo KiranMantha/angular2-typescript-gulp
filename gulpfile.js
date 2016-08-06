@@ -87,7 +87,8 @@ gulp.task('scripts.lib', ['scripts.systemjsConfig', 'scripts.angular', 'scripts.
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/bootstrap/dist/js/bootstrap.min.js'
+        'node_modules/bootstrap-sass/assets/javascripts/bootstrap-sprockets.js',
+        'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
     ]).pipe(gulp.dest('dist/scripts/lib'));
 });
 
@@ -97,17 +98,8 @@ gulp.task('scripts.html', function () {
         .pipe(gulp.dest('dist'));
 });
 
-//copy bootstrap css files into styles folder
-gulp.task('scripts.bootstrap', function () {
-    return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css').pipe(gulp.dest('dist/css'));
-    // return gulp.src([
-    //     'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    //     'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-    // ]).pipe(gulp.dest('dist/css'));
-});
-
 //build css files from scss
-gulp.task('scripts.css', ['scripts.bootstrap'], function () {
+gulp.task('scripts.css', function () {
     return gulp.src('src/styles/style.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/css'));
@@ -115,9 +107,9 @@ gulp.task('scripts.css', ['scripts.bootstrap'], function () {
 
 //build font files from bootstrap fonts
 gulp.task('scripts.fonts', function () {
-    return gulp.src('node_modules/bootstrap/dist/fonts/*')
+    return gulp.src(['!node_modules/bootstrap-sass/assets/fonts/bootstrap/*.eot','node_modules/bootstrap-sass/assets/fonts/bootstrap/*'])
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('dist/fonts'));
+        .pipe(gulp.dest('dist/fonts/bootstrap'));
 });
 
 //compile typescript files to javascript files
@@ -133,7 +125,7 @@ gulp.task('scripts.ts', function () {
 });
 
 //unified task for scripts
-gulp.task('scripts', gulpSequence('scripts.lib', 'scripts.html', 'scripts.css', 'scripts.ts'));
+gulp.task('scripts', gulpSequence('scripts.lib', 'scripts.html', 'scripts.css','scripts.ts'));
 //<-------------build tasks------------->//
 
 
