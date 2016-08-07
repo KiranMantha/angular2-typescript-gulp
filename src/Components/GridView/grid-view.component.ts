@@ -14,7 +14,8 @@ export class GridView {
     @Input() gvOptions: any = {
         data: [],
         columnDefs: [],
-        showActions: false
+        showActions: false,
+        actionsToShow: ['VIEW', 'EDIT', 'DELETE']
     };
 
     @Output() viewEvent = new EventEmitter();

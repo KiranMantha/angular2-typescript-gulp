@@ -16,13 +16,13 @@
                     {{row[column.fieldName]}}
                 </td>
                 <td *ngIf="gvOptions.showActions">
-                    <button class="btn btn-info btn-sm" (click)="_view($event,row)">
+                    <button *ngIf="!gvOptions.actionsToShow || gvOptions.actionsToShow.indexOf('VIEW') > -1" class="btn btn-info btn-sm" (click)="_view($event,row)">
                         <span class="fa fa-search"></span>
                     </button>
-                    <button class="btn btn-primary btn-sm" (click)="_edit($event,row)">
+                    <button *ngIf="!gvOptions.actionsToShow || gvOptions.actionsToShow.indexOf('EDIT') > -1" class="btn btn-primary btn-sm" (click)="_edit($event,row)">
                         <span class="fa fa-pencil"></span>
                     </button>
-                    <button class="btn btn-danger btn-sm" (click)="_delete($event,row)">
+                    <button *ngIf="!gvOptions.actionsToShow || gvOptions.actionsToShow.indexOf('DELETE') > -1" class="btn btn-danger btn-sm" (click)="_delete($event,row)">
                         <span class="fa fa-trash-o"></span>
                     </button>
                 </td>
@@ -52,13 +52,13 @@
                     {{row[columnName]}}
                 </td>
                 <td *ngIf="gvOptions.showActions">
-                    <button class="btn btn-info btn-sm" (click)="_view($event,row)">
+                    <button *ngIf="!gvOptions.actionsToShow || gvOptions.actionsToShow.indexOf('VIEW') > -1" class="btn btn-info btn-sm" (click)="_view($event,row)">
                         <span class="fa fa-search"></span>
                     </button>
-                    <button class="btn btn-primary btn-sm" (click)="_edit($event,row)">
+                    <button *ngIf="!gvOptions.actionsToShow || gvOptions.actionsToShow.indexOf('EDIT') > -1" class="btn btn-primary btn-sm" (click)="_edit($event,row)">
                         <span class="fa fa-pencil"></span>
                     </button>
-                    <button class="btn btn-danger btn-sm" (click)="_delete($event,row)">
+                    <button *ngIf="!gvOptions.actionsToShow || gvOptions.actionsToShow.indexOf('DELETE') > -1" class="btn btn-danger btn-sm" (click)="_delete($event,row)">
                         <span class="fa fa-trash-o"></span>
                     </button>
                 </td>

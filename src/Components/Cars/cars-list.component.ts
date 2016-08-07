@@ -36,8 +36,12 @@ export class CarListComponent {
     this._showModal(new CarModal());
   }
 
-  private _viewCar(evt) {
+  private _editCar(evt) {
     this._showModal(evt.modal);
+  }
+
+  private _deleteCar(evt) {
+    this._carsService.deleteCar(evt.modal.id);
   }
 
   ngOnInit() {
@@ -46,6 +50,7 @@ export class CarListComponent {
         this.gvOptions = {
           data: updatedCars,
           showActions: true,
+          actionsToShow: ['EDIT', 'DELETE'],
           columnDefs: [
             { displayName: 'Id', fieldName: 'id' },
             { displayName: 'Car Name', fieldName: 'name' },

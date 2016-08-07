@@ -4,6 +4,7 @@
     </div>
     <div class="container" 
         grid-view [gvOptions]="gvOptions" 
-        (viewEvent)="_viewCar($event)"
+        (editEvent)="_editCar($event)"
+        (deleteEvent) = "_deleteCar($event)"
     ></div>
 </div>
