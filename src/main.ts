@@ -15,8 +15,7 @@ declare var $: any;
 @Component({
     selector: "[app]",
     directives: [ROUTER_DIRECTIVES, TodoListComponent, TodoDetailsComponent],
-    templateUrl: "_main.tpl.html",
-    precompile: [TodoListComponent, TodoDetailsComponent]
+    templateUrl: "_main.tpl.html"
 })
 
 class App {
