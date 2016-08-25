@@ -32,7 +32,6 @@
     "gulp-changed": "^1.3.0",
     "gulp-plumber": "^1.1.0",
     "gulp-size": "*",
-    "gulp-sequence": "*",
     "run-sequence": "*",
     "typescript": "^1.7.0",
     "typings": "*",

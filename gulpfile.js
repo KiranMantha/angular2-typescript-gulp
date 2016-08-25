@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-//const webserver = require('gulp-webserver');
 const webserver = require("browser-sync").create();
 const del = require('del');
 const sass = require('gulp-sass');
@@ -196,9 +195,7 @@ gulp.task('webserver', function () {
 //<-------------webserver task------------->//
 
 //<-------------default task------------->//
-//gulp.task('default', ['scripts', 'watch', 'webserver']);
 gulp.task('default', function (done) {
     runSequence('scripts', 'watch', 'webserver', done);
 });
-//gulp.task('default', gulpSequence('scripts', 'watch', 'webserver'));
 //<-------------default task------------->//
