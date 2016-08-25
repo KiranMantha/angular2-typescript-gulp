@@ -5,7 +5,6 @@ const sass = require('gulp-sass');
 const changed = require('gulp-changed');
 const plumber = require('gulp-plumber');
 const runSequence = require('run-sequence');
-const gulpSequence = require('gulp-sequence');
 const size = require('gulp-size');
 const sourcemaps = require('gulp-sourcemaps');
 const typescript = require('gulp-typescript');
@@ -16,7 +15,7 @@ const GULP_SIZE_DEFAULT_CONFIG = {
 const PATHS = {
     typings: [
         // Ensures ES6/7 API definitions are available when transpiling TS to JS.
-        'node_modules/typescript/lib/lib.es7.d.ts',
+        'node_modules/typescript/lib/lib.es6.d.ts',
         'node_modules/typescript/lib/lib.dom.d.ts',
         // Typings definitions for 3rd party libs
         'typings/index.d.ts'

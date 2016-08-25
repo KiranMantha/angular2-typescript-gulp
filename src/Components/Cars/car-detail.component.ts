@@ -10,7 +10,7 @@ import {CarModal} from "../../Modals/car-modal";
 export class CarDetailsComponent {
     private _carModal: CarModal;
     constructor(
-        @Inject(CarsService) private _carsService
+        @Inject(CarsService) private _carsService: CarsService
     ) {
 
     }
