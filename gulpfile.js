@@ -1,10 +1,12 @@
 const gulp = require('gulp');
-const webserver = require('gulp-webserver');
+//const webserver = require('gulp-webserver');
+const webserver = require("browser-sync").create();
 const del = require('del');
 const sass = require('gulp-sass');
 const changed = require('gulp-changed');
 const plumber = require('gulp-plumber');
 const runSequence = require('run-sequence');
+const gulpSequence = require('gulp-sequence');
 const size = require('gulp-size');
 const sourcemaps = require('gulp-sourcemaps');
 const typescript = require('gulp-typescript');
@@ -53,6 +55,11 @@ gulp.task('scripts.angular.core', function () {
         .pipe(gulp.dest(PATHS.dist + '/scripts/angular/core'));
 });
 
+gulp.task('scripts.angular.forms', function () {
+    return gulp.src('node_modules/@angular/forms/bundles/forms.umd.min.js')
+        .pipe(gulp.dest(PATHS.dist + '/scripts/angular/forms'));
+});
+
 gulp.task('scripts.angular.http', function () {
     return gulp.src('node_modules/@angular/http/bundles/http.umd.min.js')
         .pipe(gulp.dest(PATHS.dist + '/scripts/angular/http'));
@@ -83,7 +90,7 @@ gulp.task('scripts.angular.upgrade', function () {
         .pipe(gulp.dest(PATHS.dist + '/scripts/angular/upgrade'));
 });
 
-gulp.task('scripts.angular', ['scripts.angular.common', 'scripts.angular.compiler', 'scripts.angular.core', 'scripts.angular.http', 'scripts.angular.platform-browser', 'scripts.angular.platform-browser-dynamic', 'scripts.angular.router', 'scripts.angular.router-deprecated', 'scripts.angular.upgrade'], function () {
+gulp.task('scripts.angular', ['scripts.angular.common', 'scripts.angular.compiler', 'scripts.angular.core', 'scripts.angular.forms', 'scripts.angular.http', 'scripts.angular.platform-browser', 'scripts.angular.platform-browser-dynamic', 'scripts.angular.router', 'scripts.angular.router-deprecated', 'scripts.angular.upgrade'], function () {
     return gulp.src(
         'node_modules/angular2-in-memory-web-api/index.js'
     ).pipe(gulp.dest(PATHS.dist + '/scripts/angular/angular2-in-memory-web-api'));
@@ -134,7 +141,7 @@ gulp.task('scripts.fonts', function () {
 //compile typescript files to javascript files
 gulp.task('scripts.ts', function () {
     return gulp
-        .src([].concat(PATHS.typings, PATHS.ts), {
+        .src([].concat(PATHS.ts), {
             base: './src'
         })
         .pipe(changed(PATHS.dist, {
@@ -159,27 +166,39 @@ gulp.task('scripts', function (done) {
 
 
 //<-------------watch tasks------------->//
-gulp.task('watch', function () { 
-    gulp.watch(PATHS.css, ['scripts.css']);
-    gulp.watch(PATHS.html, ['scripts.html']);
-    gulp.watch(PATHS.ts, ['scripts.ts']);
+gulp.task('watch.css', function () {
+    gulp.watch(PATHS.css, ['scripts.css']).on('change', webserver.reload);
+});
+
+//watch task for html
+gulp.task('watch.html', function () {
+    gulp.watch(PATHS.html, ['scripts.html']).on('change', webserver.reload);
+});
+
+//watch task for html
+gulp.task('watch.ts', function () {
+    gulp.watch(PATHS.ts, ['scripts.ts']).on('change', webserver.reload);
+});
+
+//unified task for watch
+gulp.task('watch', function (done) {
+    runSequence('watch.html', 'watch.css', 'watch.ts', done);
 });
 //<-------------watch tasks------------->//
 
-
 //<-------------webserver task------------->//
 gulp.task('webserver', function () {
-    gulp.src('dist')
-        .pipe(webserver({
-            livereload: true,
-            port: 8080,
-            open: true
-        }));
+    webserver.init({
+        server: "./dist",
+        port: 8080
+    });
 });
 //<-------------webserver task------------->//
 
 //<-------------default task------------->//
-gulp.task('default', function () {
-    runSequence('scripts', 'watch', 'webserver')
+//gulp.task('default', ['scripts', 'watch', 'webserver']);
+gulp.task('default', function (done) {
+    runSequence('scripts', 'watch', 'webserver', done);
 });
+//gulp.task('default', gulpSequence('scripts', 'watch', 'webserver'));
 //<-------------default task------------->//

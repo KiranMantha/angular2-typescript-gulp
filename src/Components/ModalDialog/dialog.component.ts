@@ -9,7 +9,7 @@ import * as _ from 'lodash';
     templateUrl: 'Components/ModalDialog/dialog.tpl.html'
 })
 
-export class ModalDialog implements AfterViewInit {
+export class ModalDialog {
     private _elementRef: ElementRef;
     private _content: string;
     private _classArray: Array<string> = [];

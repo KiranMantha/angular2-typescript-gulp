@@ -4,8 +4,7 @@ import * as _ from 'lodash';
 
 @Component({
     selector: '[grid-view]',
-    templateUrl: 'Components/GridView/grid-view.tpl.html',
-    pipes: [KeysPipe]
+    templateUrl: 'Components/GridView/grid-view.tpl.html'
 })
 
 export class GridView {

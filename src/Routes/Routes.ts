@@ -1,7 +1,14 @@
-import {TodoListComponent} from "../components/Todos/todo-list.component";
-import {TodoDetailsComponent} from "../components/Todos/todo-details.component";
 
-export const AppRoutes = [
-    { path: '', component: TodoListComponent, name: 'Todos', useAsDefault: true },
-    { path: 'todo/details/:id', component: TodoDetailsComponent, name: 'TodoDetailsComponent' }
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'todos', pathMatch: 'full' },
+  { path: 'todos', loadChildren: 'scripts/components/Todos/index' },
+  { path: 'cars', loadChildren: 'scripts/components/Cars/index' }
 ];
+
+export const appRoutingProviders: any[] = [
+
+];
+
+export const routing = RouterModule.forRoot(routes);

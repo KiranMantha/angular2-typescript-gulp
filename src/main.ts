@@ -1,25 +1,34 @@
-
-import {bootstrap} from "@angular/platform-browser-dynamic";
-import {Component, enableProdMode, ViewContainerRef, ComponentResolver} from "@angular/core";
-import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
-import {ROUTER_DIRECTIVES, provideRouter} from "@angular/router";
-import {TodoListComponent} from "./components/Todos/todo-list.component";
-import {TodoDetailsComponent} from "./components/Todos/todo-details.component";
-import {TodoService} from "./Services/todo-service";
-import {CarsService} from "./Services/cars-service";
-import {AppRoutes} from "./Routes/Routes";
+import {NgModule, Component, enableProdMode} from "@angular/core";
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {routing, appRoutingProviders} from "./Routes/Routes";
+import {DialogModule} from './components/ModalDialog/index';
+import {TodoModule} from './components/Todos/index';
+import {CarsModule} from './components/Cars/index';
 
 enableProdMode()
 declare var $: any;
 
 @Component({
     selector: "[app]",
-    directives: [ROUTER_DIRECTIVES, TodoListComponent, TodoDetailsComponent],
     templateUrl: "_main.tpl.html"
 })
 
-class App {
+class App { }
 
-}
+@NgModule({
+    imports: [
+        BrowserModule,
+        FormsModule,
+        routing,
+        DialogModule,
+        TodoModule,
+        CarsModule
+    ],
+    declarations: [App],
+    bootstrap: [App]
+})
+export class AppModule { }
 
-bootstrap(App, [provideRouter(AppRoutes), TodoService, CarsService]).catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule);

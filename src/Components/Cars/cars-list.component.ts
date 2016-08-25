@@ -3,21 +3,19 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
 import {CarsService} from "../../Services/cars-service";
 import {DialogService} from "../../Services/dialog-service";
 import {CarModal} from "../../Modals/car-modal";
-import {CarDetailsComponent} from "./car-detail.component";
-import {GridView} from "../GridView/grid-view.component";
+import {CarDetailsComponent} from './car-detail.component';
 
 @Component({
   selector: '[cars-list]',
-  templateUrl: 'Components/cars/cars-list.tpl.html',
-  directives: [CarDetailsComponent, GridView]
+  templateUrl: 'Components/cars/cars-list.tpl.html'
 })
 
 export class CarListComponent {
   private _carModal = new CarModal();
   private gvOptions: any;
   constructor(
-    @Inject(CarsService) private _carsService,
-    @Inject(DialogService) private _dialogService,
+    @Inject(CarsService) private _carsService: CarsService,
+    @Inject(DialogService) private _dialogService: DialogService,
     private _viewContainer: ViewContainerRef,
     private zone: NgZone
   ) {
@@ -62,3 +60,4 @@ export class CarListComponent {
     });
   }
 }
+
