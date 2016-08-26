@@ -1,0 +1,41 @@
+<form (submit)="_saveCar()">
+    <table class="table">
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                {{_carModal.id}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                <input class="form-control" name="carName" type="text" [(ngModel)]="_carModal.name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Type
+            </td>
+            <td>
+                <input class="form-control" name="carType" type="text" [(ngModel)]="_carModal.type" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Company
+            </td>
+            <td>
+                <input class="form-control" name="carCompany" type="text" [(ngModel)]="_carModal.company" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right">
+                <button class="btn btn-primary btn-sm">Save</button>
+            </td>
+        </tr>
+    </table>
+</form>

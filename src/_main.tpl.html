@@ -1,4 +1,8 @@
 <div class="container">
-    <h3>Welcome</h3>
-    <router-outlet></router-outlet>
+  <h3>Welcome</h3>
+  <ul class="nav nav-pills">
+    <li role="presentation"><a routerLink="todos" routerLinkActive="active">Todos</a></li>
+    <li role="presentation"><a routerLink="cars" routerLinkActive="active">Cars</a></li>
+  </ul>
+  <router-outlet></router-outlet>
 </div>

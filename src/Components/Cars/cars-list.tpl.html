@@ -1,0 +1,10 @@
+<div class="row">
+    <div style="text-align:right">
+        <button class="btn btn-primary btn-sm" (click)="_newCar()">Create Car</button>
+    </div>
+    <div class="container" 
+        grid-view [gvOptions]="gvOptions" 
+        (editEvent)="_editCar($event)"
+        (deleteEvent) = "_deleteCar($event)"
+    ></div>
+</div>

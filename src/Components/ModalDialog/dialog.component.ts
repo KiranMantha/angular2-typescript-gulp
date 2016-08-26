@@ -1,12 +1,10 @@
-import {Component, DynamicComponentLoader, ElementRef, ComponentRef, ApplicationRef, Injector} from '@angular/core';
+import {Component, DynamicComponentLoader, ElementRef, ComponentRef, ApplicationRef, Injector, AfterViewInit} from '@angular/core';
 import { HTTP_PROVIDERS, Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
 
-declare var jQuery: any;
-
 @Component({
-    selector: 'ng-dialog',
+    selector: '[ng-dialog]',
     providers: [HTTP_PROVIDERS],
     templateUrl: 'Components/ModalDialog/dialog.tpl.html'
 })
@@ -15,12 +13,14 @@ export class ModalDialog {
     private _elementRef: ElementRef;
     private _content: string;
     private _classArray: Array<string> = [];
+    private _componentRef: ComponentRef;
 
     public closeByDocument: boolean;
     public template: string = '';
     public templateUrl: string = '';
     public classNameArray: Array<string> = [];
     public component: Component;
+    public callBackComponent: Component;
     public callbackOnClose: any;
 
     constructor(private _ElementRef: ElementRef,
@@ -33,10 +33,10 @@ export class ModalDialog {
     }
 
     public openDialog(): void {
-        jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+        $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
         if (this.templateUrl !== '') {
-            this._loadTemplate(this.templateUrl).subscribe(content => { 
-                jQuery(this._elementRef.nativeElement).find('.ng-dialog-content')[0].innerHTML = content;
+            this._loadTemplate(this.templateUrl).subscribe(content => {
+                $(this._elementRef.nativeElement).find('.ng-dialog-content')[0].innerHTML = content;
             });
         } else if (this.component) {
             this._loadComponent(this.component);
@@ -49,7 +49,8 @@ export class ModalDialog {
             this._classArray = ['ng-dialog'];
         }
     }
-    public closeDialog(evt): void {
+
+    public closeDialog(evt: Event): void {
         if (this.closeByDocument) {
             if (evt.target.classList.contains('ng-dialog') || evt.target.classList.contains('ng-dialog-close')) {
                 this._close();
@@ -63,20 +64,24 @@ export class ModalDialog {
     }
 
     private _close(): void {
-        jQuery(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+        $(this._elementRef.nativeElement).parents('body').toggleClass('ng-dialog-open');
+        //this.childComponentRef.destroy();
+        //this.appRef.tick();
         this.componentRef.destroy();
-        if (_.isFunction(this.callbackOnClose)) {
-            this.callbackOnClose();
+        if (_.isFunction(this.callBackComponent[this.callbackOnClose])) {
+            this.callBackComponent[this.callbackOnClose]();
         }
     }
 
-    private _loadComponent(component): void {
+    private _loadComponent(component: Component): void {
         this.dcl.loadAsRoot(this.component, '.ng-dialog-content', this.injector).then(componentref => {
             this.appRef._loadComponent(componentref);
+            this.childComponentRef = componentref;
         });
     }
 
-    private _loadTemplate(tmpl): Observable<string> {
+
+    private _loadTemplate(tmpl: string): Observable<string> {
         return this._http.get(tmpl)
             .map(this._extractData)
     }

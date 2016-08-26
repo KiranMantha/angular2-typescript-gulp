@@ -2,16 +2,27 @@ import {Component, Injectable, ComponentResolver, ViewContainerRef} from '@angul
 import {ModalDialog} from "../Components/ModalDialog/dialog.component";
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
-@Injectable()
 
+interface IDialogConfig {
+    viewContainer: any;
+    template: string;
+    templateUrl: string;
+    closeByDocument: boolean;
+    classNameArray: string[];
+    component: any;
+    callBackComponent: any;
+}
+
+@Injectable()
 export class DialogService {
-    public config = {
+    public config: IDialogConfig = {
         viewContainer: ViewContainerRef,
         template: '',
         templateUrl: '',
         closeByDocument: true,
         classNameArray: [],
-        component: Component
+        component: Component,
+        callBackComponent: Component
     };
     public callbackOnClose: () => void;
     private _dialog: any;
@@ -28,6 +39,7 @@ export class DialogService {
                 this._dialog.instance.closeByDocument = this.config.closeByDocument;
                 this._dialog.instance.classNameArray = this.config.classNameArray;
                 this._dialog.instance.component = this.config.component;
+                this._dialog.instance.callBackComponent = this.config.callBackComponent;
                 this._dialog.instance.callbackOnClose = this.callbackOnClose;
                 this._dialog.instance.openDialog();
             });
@@ -38,6 +50,10 @@ export class DialogService {
             this._componentResolver.resolveComponent(_componentName).then(factory => {
                 let _component = _viewContainer.createComponent(factory);
                 _component.instance.componentRef = _component;
+                _component.changeDetectorRef.detectChanges();
+                _component.onDestroy(() => {
+                    _component.changeDetectorRef.detach();
+                });
                 obs.next(_component);
                 obs.complete();
             });

@@ -1,3 +1,7 @@
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "table";
 @-webkit-keyframes ngdialog-flyin {
   0% {
     opacity: 0;
