@@ -8,7 +8,7 @@ interface DialogConfig {
     template: string;
     templateUrl: string;
     closeByDocument: boolean;
-    classNameArray: Array<string>;
+    classNameArray: string[];
     component: Component;
     callBackComponent: Component;
 }
