@@ -19,4 +19,4 @@ A sample angularjs2 application using typescript and gulp. This provides the imp
 
 
 #####Update:
-The latest project is completely migrated to angularjs 2.0.0-rc-5 build to take advantage of latest routing modules and @NgModule decorator.
+The latest project is completely migrated to angularjs 2.0.0-rc-5 build to take advantage of latest routing modules, @NgModule decorator and also improved the reliability of gulp tasks.
