@@ -8,7 +8,7 @@ import {TodoModule} from './components/Todos/index';
 import {CarsModule} from './components/Cars/index';
 
 enableProdMode()
-declare var $: any;
+let $: any;
 
 @Component({
     selector: "[app]",

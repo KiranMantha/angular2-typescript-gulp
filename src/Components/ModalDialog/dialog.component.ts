@@ -50,7 +50,7 @@ export class ModalDialog {
         }
     }
 
-    public closeDialog(evt): void {
+    public closeDialog(evt: Event): void {
         if (this.closeByDocument) {
             if (evt.target.classList.contains('ng-dialog') || evt.target.classList.contains('ng-dialog-close')) {
                 this._close();
@@ -73,7 +73,7 @@ export class ModalDialog {
         }
     }
 
-    private _loadComponent(component): void {
+    private _loadComponent(component: Component): void {
         this.dcl.loadAsRoot(this.component, '.ng-dialog-content', this.injector).then(componentref => {
             this.appRef._loadComponent(componentref);
             this.childComponentRef = componentref;
@@ -81,7 +81,7 @@ export class ModalDialog {
     }
 
 
-    private _loadTemplate(tmpl): Observable<string> {
+    private _loadTemplate(tmpl: string): Observable<string> {
         return this._http.get(tmpl)
             .map(this._extractData)
     }

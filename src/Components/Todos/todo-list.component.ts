@@ -11,7 +11,7 @@ import {TodoDetailsComponent} from "./todo-details.component";
 
 export class TodoListComponent {
   constructor(
-    @Inject(TodoService) private _todoService,
+    @Inject(TodoService) private _todoService: TodoService,
     //@Inject(DialogService) private _dialogService,
     private _viewContainer: ViewContainerRef
   ) {

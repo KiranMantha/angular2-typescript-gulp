@@ -2,18 +2,20 @@ import {Component, Injectable, ComponentResolver, ViewContainerRef} from '@angul
 import {ModalDialog} from "../Components/ModalDialog/dialog.component";
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
-@Injectable()
 
+interface DialogConfig {
+    viewContainer: ViewContainerRef;
+    template: string;
+    templateUrl: string;
+    closeByDocument: boolean;
+    classNameArray: Array<string>;
+    component: Component;
+    callBackComponent: Component;
+}
+
+@Injectable()
 export class DialogService {
-    public config = {
-        viewContainer: ViewContainerRef,
-        template: '',
-        templateUrl: '',
-        closeByDocument: true,
-        classNameArray: [],
-        component: Component,
-        callBackComponent: Component
-    };
+    public config: DialogConfig;
     public callbackOnClose: () => void;
     private _dialog: any;
 
