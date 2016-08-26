@@ -187,7 +187,7 @@ gulp.task('watch', function (done) {
 //<-------------webserver task------------->//
 gulp.task('webserver', function () {
     webserver.init({
-        server: "./dist",
+        server: "./" + PATHS.dist,
         port: 8080
     });
 });

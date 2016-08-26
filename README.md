@@ -1,5 +1,5 @@
 ##Introduction
-A sample angularjs2 application using typescript and gulp. This provides the implementation of 2-way bindings, handling click events, creating services, writing observables, creation of components dynamically and destroying them. If found difficulty, please feel free to post and raise issues with proper description and if possible provide a plunker.
+A sample angularjs2 application using typescript and gulp. This provides the implementation of modules, 2-way bindings, handling click events, creating services, writing observables, creation of components dynamically and destroying them. If found difficulty, please feel free to post and raise issues with proper description and if possible provide a plunker.
 
 ###Setup
 
@@ -11,15 +11,12 @@ A sample angularjs2 application using typescript and gulp. This provides the imp
 
 3. run 'npm install' to install the dependancies mentioned in package.json
 
-4. if you change the build folder name then update gulpfile.js at line:156 and systemjs.config.js at line:8
+4. if you change the build folder name then update gulpfile.js at line:23 and systemjs.config.js at line:8
 
-5. run 'gulp' to start application at localhost:8080. you can change the port number in gulpfile.js at line:159
+5. run 'gulp' to start application at localhost:8080. you can change the port number in gulpfile.js at line:191
 
 6. this repository is created on the basis of https://github.com/pkozlowski-opensource/ng2-play. if found any difficulty in this repo check ng2-play repo for simplified structure.
 
 
-#####Note: 
-If found any errors in npm install, please run npm install once again it will clear all the errors. After running gulp, please make sure that all your scripts are migrated to your build folder accordingly if not please run gulp again to run localhost(it will show errors in .d.ts files but ignore them).
-
 #####Update:
-The latest project is completely migrated to angularjs 2.0.0-rc-4 build to take advantage of latest routing modules. it is not compatible with beta builds.
+The latest project is completely migrated to angularjs 2.0.0-rc-5 build to take advantage of latest routing modules and @NgModule decorator.
