@@ -3,19 +3,27 @@ import {ModalDialog} from "../Components/ModalDialog/dialog.component";
 import { Observable }     from 'rxjs/Observable';
 import * as _ from 'lodash';
 
-interface DialogConfig {
-    viewContainer: ViewContainerRef;
+interface IDialogConfig {
+    viewContainer: any;
     template: string;
     templateUrl: string;
     closeByDocument: boolean;
     classNameArray: string[];
-    component: Component;
-    callBackComponent: Component;
+    component: any;
+    callBackComponent: any;
 }
 
 @Injectable()
 export class DialogService {
-    public config: DialogConfig;
+    public config: IDialogConfig = {
+        viewContainer: ViewContainerRef,
+        template: '',
+        templateUrl: '',
+        closeByDocument: true,
+        classNameArray: [],
+        component: Component,
+        callBackComponent: Component
+    };
     public callbackOnClose: () => void;
     private _dialog: any;
 

@@ -2,8 +2,7 @@ import {NgModule, Component, enableProdMode} from "@angular/core";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {routing, appRoutingProviders} from "./Routes/Routes";
-import {DialogModule} from './components/ModalDialog/index';
+import {routing, appRoutingProviders} from "./Routes/Routes";;
 import {TodoModule} from './components/Todos/index';
 import {CarsModule} from './components/Cars/index';
 
@@ -22,7 +21,6 @@ class App { }
         BrowserModule,
         FormsModule,
         routing,
-        DialogModule,
         TodoModule,
         CarsModule
     ],

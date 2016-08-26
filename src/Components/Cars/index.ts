@@ -7,18 +7,27 @@ import { CarComponent } from "./car.component";
 import { CarListComponent } from "./cars-list.component";
 import { CarDetailsComponent } from "./car-detail.component";
 import { routing } from './car-routes';
+import { GridModule } from '../GridView/index';
+import {DialogModule} from '../ModalDialog/index';
+
+/*
+Dont declare a component if it is going to dynamically created. 
+All the dynamically created components will come under AppModule scope.
+If Declared, code will throw error saying that the component is refered twice in CarsModule and AppModule.
+*/
 
 @NgModule({
   imports: [
-    FormsModule, 
-    CommonModule, 
-    routing
+    FormsModule,
+    CommonModule,
+    routing,
+    GridModule,
+    DialogModule
   ],
-  declarations: [ 
-    CarComponent, 
-    CarListComponent, 
-    CarDetailsComponent 
+  declarations: [
+    CarComponent,
+    CarListComponent
   ],
-  providers: [ CarsService ]
+  providers: [CarsService]
 })
 export class CarsModule { }
